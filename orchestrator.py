@@ -345,6 +345,15 @@ def refresh_event(event_ticker: str,
 
     # Success.
     failure_counts[event_ticker] = 0
+
+    # Graceful no-op: a pipeline may return None to signal "no theo to emit
+    # right now" (e.g. KXTRUEV markets not yet initialized by Kalshi). Skip
+    # the write entirely and treat as a benign cycle.
+    if theo is None:
+        logger.info("Pipeline %s returned None for %s; no theo emitted "
+                    "(graceful no-op)", cls.__name__, event_ticker)
+        return "no_theo"
+
     out_path = theos_dir / f"{event_ticker}.json"
     if dry_run:
         # Per spec: skip writes, log payload at DEBUG.

@@ -1,0 +1,121 @@
+{
+  "event_ticker": "KXTRUEV-26MAY01",
+  "family_signature": "truflation:ev:daily_threshold",
+  "tradability": "tradable_low_confidence",
+  "tradability_reason": "Three-path workaround investigation: (a) direct Truflation API — paywalled, refused; (b) 4-component OLS proxy basket (Cu/Pd/Pt/Ni-monthly, no cobalt/lithium) — failed (R²=0.221, residual_stdev=6.32 idx pts, sign-flipped Pd coef); (c) methodology-faithful 6-metal chain-linked reconstruction per the v1.41 PDF using LIT-ETF lithium proxy + sparse cobalt anchor — also fails the calibration gate (R²=0.05, sigma=7.10 idx pts vs 13 settled events) but is structurally correct (the formula matches the published methodology and would generalize OOS if the price inputs were right). Ship-with-trip rationale: the formula is correct, the LIT/cobalt inputs are the only weakness; live PnL trip at $2/24h (TIGHTER than AAA's $5 because R² is much worse) bounds downside; confidence is hard-pinned to 'low' so the bot quotes wide; refusal triggers catch the obvious failure modes (stale data, out-of-range reconstruction, publish blackout). Once a paid lithium spot feed becomes available, the same pipeline regains accuracy without code change.",
+  "underlying": {
+    "name": "Truflation Electric Vehicle Commodity Index (TruEV)",
+    "unit": "index_points (USD-denominated, base Jan 1 2018)",
+    "data_sources": [
+      {
+        "purpose": "primary_reconstruction",
+        "url": "archive/truflation_ev/<metal>/<YYYY-MM-DD>.json",
+        "method": "READ_ARCHIVE",
+        "auth": "none",
+        "publish_frequency": "daily",
+        "publish_time_et": "approx 09:30 ET (after morning metals data)",
+        "format": "json_archive",
+        "field_path": "value (or close); publication_timestamp",
+        "historical_archive_url": "auto_theo/archive/truflation_ev/{nickel,copper,cobalt,palladium,lithium,platinum}/<date>.json"
+      },
+      {
+        "purpose": "reference_only",
+        "url": "https://truflation.com/marketplace/ev-index",
+        "method": "GET",
+        "auth": "api_key_required",
+        "publish_frequency": "daily",
+        "format": "html_or_json",
+        "field_path": "current_value",
+        "historical_archive_url": "https://truflation.com/marketplace/ev-index"
+      }
+    ]
+  },
+  "resolution": {
+    "rule_quote_verbatim": "If the Truflation EV Commodity Index on May 1, 2026 is above [strike], then the market resolves to Yes.",
+    "rule_quote_source": "Inferred per-strike rule from the KXTRUEV-26APR30 pattern; will be replaced with the verbatim text from /trade-api/v2/markets/KXTRUEV-26MAY01-T<strike> rules_primary once Kalshi initializes the markets.",
+    "threshold_per_strike": "Parsed from market ticker last segment after 'T'. KXTRUEV-26MAY01-T<strike> -> threshold = <strike>.",
+    "direction": "above",
+    "resolution_timestamp": "2026-05-01T23:59:00Z"
+  },
+  "blackout_calendar": [],
+  "blackout_rules": [
+    "T-15min to T+30min around the 13:30 UTC daily Truflation publish tick — the pipeline enforces this as BlackoutError unconditionally regardless of spec.blackout_calendar.",
+    "Refuse if any of {Cu, Pd, Pt, Ni-proxy, Li-proxy} is stale > 3 days, or cobalt anchor > 90 days.",
+    "Refuse if reconstructed index falls outside [800, 2000] idx pts."
+  ],
+  "vol_estimation_hints": {
+    "lookback_days": 14,
+    "exclude_blackout_days": false,
+    "method_suggestion": "Total σ_h = sqrt(recon_sigma^2 + drift_sigma^2 * h_days). recon_sigma=7.10 idx pts (from research/ev_basket/methodology_reconstruction_winner.json). drift_sigma=7.3 idx pts (estimated from event-window intraday range). At h=1 day, σ_h ≈ 10 idx pts vs $10 strike spacing — vol-to-spacing ratio ≈ 1.0, materially uncertain.",
+    "known_seasonality": "Quarterly weight rebalances on Jan 1 / Apr 1 / Jul 1 / Oct 1. v1.41 PDF only documents through 2025-10-01; 2026-Q1 and 2026-Q2 weights are NOT in the PDF and the pipeline pins to the 2025-10-01 row — drift risk."
+  },
+  "model_family_suggestion": "normal_in_underlying_space",
+  "researched_at": "2026-05-01T06:16:15Z",
+  "researcher_notes": "Cloned and revised from KXTRUEV-26APR30. Promotion path: ship-with-trip override per CLAUDE.md Fix 2. The pipeline is the existing TruflationEvDailyPipeline (family_signature truflation:ev:daily_threshold). No live Kalshi markets are initialized for this event yet (expected current state); pipeline returns None (no theo file written) until markets appear, then dispatches one theo per live strike. Strike grid below is the canonical 15-strike grid copied from KXTRUEV-26APR30 — the live Kalshi markets may differ; the pipeline reads the actual live grid from the archive when present.",
+  "concerns_considered": [
+    {
+      "concern": "Lithium data gap (33.5% weight, LIT-ETF proxy, +23% vs spot ~+8% in event window)",
+      "verdict": "watch",
+      "data": "research/ev_basket/methodology_reconstruction_winner.json forward_applicability.lithium_data_source_blocker. LIT ETF moves on equity sentiment; over-amplifies real lithium spot moves by ~3x. Mitigation: REFUSAL trigger in pipeline if lithium archive stale > 3 days; confidence hard-pinned to 'low'."
+    },
+    {
+      "concern": "Cobalt data gap (8.2% weight, sparse anchor forward-fill, no daily granularity)",
+      "verdict": "watch",
+      "data": "Public daily cobalt LME spot does not exist for free. Mitigation: REFUSAL trigger if anchor stale > 90 days; cobalt has only 8.2% weight so impact is bounded."
+    },
+    {
+      "concern": "2026-Q1/Q2 weight drift (v1.41 PDF Oct 2025 predates these rebals)",
+      "verdict": "watch",
+      "data": "Pipeline pins to 2025-10-01 weights; two unrebalanced quarters since the latest documented row → O(weight_delta * realized_metal_price_move) bps of error, dominated by lithium and copper. Mitigation: WATCH BLOCK at top of pipeline.py; sanity-range refusal [800, 2000] catches catastrophic drift; confidence=low always."
+    },
+    {
+      "concern": "R²=0.05 vs 13 settled events on the chain-linked reconstruction",
+      "verdict": "watch",
+      "data": "research/ev_basket/methodology_reconstruction_winner.json. The model is structurally correct; the FAIL is data-access (LIT/cobalt proxies), not methodology. Mitigation: confidence hard-pinned to 'low' AND tighter $2/24h trip in pnl/truflation_ev_daily_threshold.json."
+    },
+    {
+      "concern": "Strike spacing vs underlying volatility ($10 on ~$1200 level, ~0.83% per strike)",
+      "verdict": "watch",
+      "data": "σ_h ≈ 10 idx pts at 1-day horizon vs $10 spacing → vol-to-spacing ratio ≈ 1.0. The Normal-CDF model handles this regime; no clamping of probabilities (per feedback_no_clamping.md). Confidence=low ensures the bot quotes wide."
+    },
+    {
+      "concern": "Single-point-of-failure on Truflation as data source",
+      "verdict": "blocking-mitigated",
+      "data": "Pipeline does NOT call Truflation at all in this rev — the index is reconstructed from free metal feeds (Yahoo Cu/Pd/Pt + LIT for lithium + NICK.L for nickel + cobalt sparse anchor). This trades Truflation outage risk for reconstruction-error risk."
+    },
+    {
+      "concern": "Time-to-resolution vs publish frequency — daily underlying with 13:30 UTC publish window",
+      "verdict": "watch",
+      "data": "Pipeline enforces T-15min to T+30min publish blackout (13:15..14:00 UTC) via _check_publish_blackout. Outside the blackout, σ_h scales by sqrt(time_to_resolution_in_days) per spec."
+    },
+    {
+      "concern": "Methodology drift (Truflation 2026 EV Index battery-cost-model upgrade)",
+      "verdict": "watch",
+      "data": "Pipeline pins to v1.41 weights; if Truflation publishes v1.42+ with new weights, our reconstruction diverges. Mitigation: WATCH BLOCK, sanity-range refusal, confidence=low. Manual re-validation required when v1.42+ PDF is published."
+    },
+    {
+      "concern": "Component-basket OLS proxy considered and rejected (R²=0.221)",
+      "verdict": "informational",
+      "data": "Historic — superseded by the methodology chain-link approach in this rev. Documented for completeness; no live impact."
+    },
+    {
+      "concern": "Free-source coverage gap on cobalt — no public daily/monthly free feed",
+      "verdict": "watch",
+      "data": "Same as concern #2 — duplicated for emphasis. Mitigation already in place: REFUSAL trigger at 90-day staleness."
+    },
+    {
+      "concern": "Kalshi /markets endpoint heavy rate-limiting on the public API",
+      "verdict": "informational",
+      "data": "The pipeline does NOT call Kalshi at theo time. It reads the local archive of live markets (auto_theo/archive/kalshi/markets/) for strike-grid discovery. No rate limit exposure at theo time."
+    }
+  ],
+  "backtest": {
+    "archive_quality": "synthetic_proxy_basket",
+    "skip_calibration_gate_reason": "lithium and cobalt have no free daily spot price; reconstruction is structurally limited by data, not by formula",
+    "trip_max_loss_usd_override": 2.0
+  },
+  "_strike_grid_canonical_reference": [
+    1155.42, 1165.42, 1175.42, 1185.42, 1195.42, 1205.42, 1215.42,
+    1225.42, 1235.42, 1245.42, 1255.42, 1265.42, 1275.42, 1285.42, 1295.42
+  ]
+}
