@@ -1,0 +1,119 @@
+{
+  "event_ticker": "KXAAAGASW-26MAY04",
+  "family_signature": "aaa:gas:weekly_threshold",
+  "tradability": "tradable",
+  "tradability_reason": "Single, free, well-understood data source (AAA homepage scrape) with proven prior art in theo_refresh.fetch_aaa(); 4 days of runway with daily-refreshing underlying so refresh frequency >> resolution horizon; 26 strikes 2c apart give a clean grid for a normal-CDF model; current AAA $4.300 sits inside the strike grid ($4.00-$4.50). NOTE: family_signature is 'weekly_threshold' to keep it disjoint from the daily KXAAAGASD pipeline, but rules_primary actually resolves on the single AAA print of May 4, 2026 (a Monday) -- it is structurally a daily-threshold market with a weekly Kalshi cadence (one event per Monday). Modeler should reuse the daily AAA model with strike spacing widened to 2c and forecast horizon = (close_time - now) days.",
+  "underlying": {
+    "name": "AAA US national average regular gasoline retail price",
+    "unit": "USD per gallon",
+    "data_sources": [
+      {
+        "purpose": "primary",
+        "url": "https://gasprices.aaa.com/",
+        "method": "GET",
+        "auth": "none",
+        "publish_frequency": "daily",
+        "publish_time_et": "approx 06:00-10:00 ET (AAA homepage table refreshes through morning; live theos use the value at scrape time)",
+        "format": "html_scrape",
+        "field_path": "first column of National Average table, row 0 = Today, row 1 = Yesterday, row 2 = Week Ago, row 3 = Month Ago, row 4 = Year Ago. Regex '\\$\\d\\.\\d{3}' against each <tr>; first row with 4-6 matches is the data row. See theo_refresh.fetch_aaa() for the canonical implementation.",
+        "historical_archive_url": "none -- AAA does not publish a historical CSV; backfill is done by archiving daily scrapes into auto_theo/archive/aaa/national_regular/<date>.json"
+      },
+      {
+        "purpose": "primary",
+        "url": "https://gasprices.aaa.com/?state=US",
+        "method": "GET",
+        "auth": "none",
+        "publish_frequency": "daily",
+        "publish_time_et": "same as homepage",
+        "format": "html_scrape",
+        "field_path": "identical table structure to homepage; use as failover if homepage scrape fails sanity checks.",
+        "historical_archive_url": "none"
+      },
+      {
+        "purpose": "cross_check",
+        "url": "https://www.eia.gov/petroleum/gasdiesel/",
+        "method": "GET",
+        "auth": "none",
+        "publish_frequency": "weekly_monday",
+        "publish_time_et": "Monday afternoon (typical release: Mon ~17:00 ET; data effective Mon morning)",
+        "format": "html_scrape",
+        "field_path": "U.S. Regular All Formulations Retail Gasoline Prices, most-recent-week row. EIA prints are NOT used for resolution -- they are a sanity check on AAA. Recent observation: EIA $4.123 (4/27) vs AAA $4.300 (4/30); spread is normal (AAA tends to lead EIA by ~2-4 days during a rally).",
+        "historical_archive_url": "https://www.eia.gov/dnav/pet/hist_xls/EMM_EPMR_PTE_NUS_DPGw.xls"
+      },
+      {
+        "purpose": "cross_check",
+        "url": "https://www.eia.gov/dnav/pet/hist_xls/EMM_EPMR_PTE_NUS_DPGw.xls",
+        "method": "GET",
+        "auth": "none",
+        "publish_frequency": "weekly_monday",
+        "publish_time_et": "Monday afternoon",
+        "format": "csv",
+        "field_path": "weekly Monday timeseries 1990-present, U.S. national avg regular retail.",
+        "historical_archive_url": "https://www.eia.gov/dnav/pet/hist/RWTCD.htm"
+      }
+    ]
+  },
+  "resolution": {
+    "rule_quote_verbatim": "If average regular gas prices for United States are strictly greater than $[strike] on May 4, 2026 according to AAA, then the market resolves to Yes.",
+    "rule_quote_source": "Kalshi /trade-api/v2/markets/KXAAAGASW-26MAY04-4.300 rules_primary, fetched 2026-04-30",
+    "threshold_per_strike": "Parsed as float from market ticker last segment after the final '-'. E.g. KXAAAGASW-26MAY04-4.300 -> 4.300. Same parser as theo_refresh._parse_strike. floor_strike field on the market record is the authoritative source if available.",
+    "direction": "above",
+    "resolution_timestamp": "2026-05-04T14:00:00Z"
+  },
+  "blackout_calendar": [
+    {
+      "start": "2026-05-04T10:00:00Z",
+      "end": "2026-05-04T14:30:00Z",
+      "reason": "AAA May 4 print window. AAA's homepage table refreshes through the US morning; the resolution-relevant 'today' value can flicker between yesterday's posted value and the new May 4 reading during ~06:00-10:00 ET. Pull theos to avoid quoting against a stale or transitioning page."
+    }
+  ],
+  "blackout_rules": [
+    "Reject any AAA scrape where today < $2.00 or today > $7.00 (AAA_PRICE_MIN=2.00, AAA_PRICE_MAX=7.00 from theo_refresh.py). On reject, do not update theo; preserve last good.",
+    "Reject any AAA scrape where |today - yesterday| > $0.30 (AAA_MAX_DAILY_MOVE=0.30 from theo_refresh.py). Real AAA daily moves are nearly always under 8c; >30c indicates a parse error or a stale page transition, never a real move.",
+    "Reject any refresh where |scraped_today - prior_file_current_value| > $0.15 (theo_refresh.refresh_kxaaagasd line 100-103). 15c headroom covers an 8c real overnight move plus a ~7c weekend backfill; anything bigger is a stale-page artifact.",
+    "If the page returns fewer than 5 valid rows from the regex, raise rather than guess (theo_refresh.fetch_aaa line 55-56).",
+    "On resolution day (2026-05-04), once the new AAA today reading has appeared and is judged stable (>= 2 consecutive scrapes >= 60s apart returning the same value), pin theos to {0.005, 0.995} per strike and stop refreshing.",
+    "Blackout T-15min to T+30min around the AAA 2026-05-04 morning publish window (10:00-14:30 UTC) -- do not quote on a transitioning page."
+  ],
+  "vol_estimation_hints": {
+    "lookback_days": 30,
+    "exclude_blackout_days": false,
+    "method_suggestion": "Forecast μ = AAA_today + drift_anchor (analyst-set offset, default 0). Forecast σ for horizon h days: σ_h = σ_1 * sqrt(h), where σ_1 ≈ 0.013 USD/gal is the recent short-horizon implied σ from the daily KXAAAGASD market (per /Users/wilsonw/Downloads/theos/KXAAAGASD-26APR29.json, sigma_used=0.013). For h=4 days (close 2026-05-04 from 2026-04-30), σ_4 ≈ 0.026. Use NormalCDF: P(strike) = 1 - Phi((strike - μ)/σ_h). Critical caveat: the current regime (WTI ~$99-100, RBOB at 3.75y high, geopolitical premium) shows realized 7-day move of +27c (4.031 -> 4.300) which is ~10x the stationary-σ estimate; the modeler MUST allow analyst override of σ and document a ceiling like σ ≤ 0.10 to capture rally continuation.",
+    "known_seasonality": "US gasoline retail has a spring-summer rally (RVP-spec switch end-April through Memorial Day, plus driving-season demand). End-April through early-May is a structural up-drift period. Prior file's drift convention (mu_anchor offset above today) is appropriate; default to a small positive drift for May 4 resolution."
+  },
+  "model_family_suggestion": "normal_in_underlying_space",
+  "researched_at": "2026-04-30T17:30:00Z",
+  "researcher_notes": "SURPRISE FINDING: despite the 'W' (weekly) suffix in the series ticker KXAAAGASW, the resolution rule is a single-day AAA print on Monday May 4, 2026 -- NOT a weekly average and NOT the EIA Monday weekly survey. rules_primary verbatim: 'If average regular gas prices for United States are strictly greater than $[strike] on May 4, 2026 according to AAA, then the market resolves to Yes.' This is structurally identical to KXAAAGASD-* (daily) markets except the cadence is one event per Monday rather than one per weekday. The 'W' likely refers to Kalshi's weekly listing cadence, not a weekly-averaged underlying. Implication: the daily AAA pipeline is fully reusable with three deltas: (1) strike spacing is 2c not 0.5c, (2) horizon at listing is up to 7 days not 1, (3) vol-vs-spacing math becomes more lenient (2c spacing absorbs some daily noise that 0.5c does not). Family signature is kept as 'aaa:gas:weekly_threshold' to keep its pipeline disjoint from daily, but the modeler should literally subclass the daily implementation. Data source verified live 2026-04-30: AAA homepage returns Today=$4.300, Yest=$4.229, Week=$4.031. EIA cross-check returns 4.123 (4/27) -- reasonable lag-spread for a rallying market. theo_refresh.fetch_aaa() in /Users/wilsonw/mm-setup/theo_refresh.py is the canonical scraper and its sanity bounds (AAA_PRICE_MIN=2.00, AAA_PRICE_MAX=7.00, AAA_MAX_DAILY_MOVE=0.30) MUST be carried into the pipeline. Reference live theo: /Users/wilsonw/Downloads/theos/KXAAAGASD-26APR29.json uses sigma_used=0.013 for a 1-day horizon, mu_anchor offset = +0.069 above today. Kalshi 429-rate-limit was hit once during research; mitigated by sleeping 7-12s between calls. expected_expiration_time=2026-05-04T14:00Z is the resolution moment; expiration_time=2026-05-11T14:00Z is the late-settlement window for slow operator finalization, not a relevant trading deadline.",
+  "concerns_considered": [
+    {
+      "concern": "Strike spacing vs underlying volatility. Strikes are 2c apart from $4.00 to $4.50; current AAA = $4.300; close is 4 days away. Stationary 1-day σ ≈ 1.3c (per KXAAAGASD-26APR29 implied σ); √4-scaled σ_4 ≈ 2.6c, comparable to one strike width. This is the boundary case where naive normal-CDF is workable. BUT the realized 7-day move 4.031 -> 4.300 = +26.9c is ~10x stationary σ; if rally continuation persists for 4 more days, σ_4 could be 5-10c and span 2-5 strikes, which inflates forward-strike probabilities far above what the lognormal-stationary model would say.",
+      "verdict": "watch",
+      "data": "AAA observed: today=$4.300, yest=$4.229 (+7.1c 1d), week-ago=$4.031 (+26.9c 7d), month-ago=$3.990 (+31c 30d). KXAAAGASD-26APR29 sigma_used=0.013, mu_anchor=4.369, current_value=4.300. Strike grid: 4.00, 4.02, ..., 4.50 (26 strikes, 2c spacing)."
+    },
+    {
+      "concern": "Single-point-of-failure on data source. AAA homepage is the SOLE resolution source. No CSV, no API, no historical archive -- a layout change to gasprices.aaa.com silently breaks fetch_aaa(). The existing scraper has three layers of sanity bounds (AAA_PRICE_MIN, AAA_PRICE_MAX, AAA_MAX_DAILY_MOVE plus a refresh-level 15c jump check) that fail-loud rather than corrupt μ; the pipeline must inherit all three. Failover to /?state=US is helpful (same backend, separate page) but if AAA's CDN serves a stale cached page, both URLs see the same staleness.",
+      "verdict": "watch",
+      "data": "theo_refresh.py lines 36-38: AAA_PRICE_MIN=2.00, AAA_PRICE_MAX=7.00, AAA_MAX_DAILY_MOVE=0.30. lines 58-65: fail-loud range/jump checks. lines 100-103: 15c-from-prior-file refresh-level check. EIA cross-check is too lagged (Mon-only, 2-4 day spread vs AAA) to be a realtime substitute, but is fine for daily reasonableness check (today's AAA should be within ~30c of last EIA print under normal regimes -- currently AAA $4.300 vs EIA $4.123 = 17.7c spread, within tolerance for a rally regime)."
+    },
+    {
+      "concern": "Time-to-resolution vs publish frequency. Close is 2026-05-04T03:59Z; today is 2026-04-30 ~17:30Z; runway = ~3.4 days. AAA refreshes daily so we get 3-4 fresh readings before close (Apr 30 today, May 1 Fri, May 2 Sat, May 3 Sun, plus the May 4 morning print which IS resolution). Plenty of refresh cycles. Note that AAA's weekend prints can be slow -- Sat/Sun may show small or no movement -- so the meaningful information arrival is the Monday morning May 4 print itself, which crystalizes resolution. Quote tightening should taper into the close-time as forecast σ shrinks toward zero.",
+      "verdict": "ok",
+      "data": "close_time=2026-05-04T03:59Z, expected_expiration_time=2026-05-04T14:00Z, AAA refreshes daily ~06:00-10:00 ET. Researched at 2026-04-30T17:30Z."
+    },
+    {
+      "concern": "Rules-source vs ticker-name mismatch ('W' suffix suggests weekly-average underlying). Many other Kalshi gas markets resolve on the EIA Monday weekly survey, not on AAA. This one explicitly says AAA on May 4 -- a single day. If a future market under the same series silently switched to EIA-based resolution without changing the ticker pattern, the pipeline would mis-resolve.",
+      "verdict": "watch",
+      "data": "rules_primary verbatim quoted in resolution.rule_quote_verbatim. Pipeline should refuse and alert if rules_primary on a future KXAAAGASW-* market does not contain the substring 'according to AAA'."
+    },
+    {
+      "concern": "Right-tail rally risk not captured by stationary normal model. Current macro: WTI ~$99-100, RBOB at multi-year high, ongoing Druzhba/Hormuz dislocations. The 7-day +27c move proves the regime is wide-tailed. A 26-strike grid up to $4.50 means strikes within 20c of current can fully resolve YES on a single +20c week -- a tail event with non-trivial probability under the current geopolitical setup that a 1.3c-σ-scaled-to-4-days normal model assigns essentially zero to.",
+      "verdict": "watch",
+      "data": "30-day move +31c, 7-day move +27c. Stationary σ_4 ≈ 2.6c implies ~7-σ event for +20c, p≈10^-12 -- clearly miscalibrated. Modeler should expose σ as analyst-overridable and consider a regime indicator (RBOB futures % change over last 5d) to inflate σ when the rally regime is active."
+    }
+  ],
+  "backtest": {
+    "archive_quality": "synthetic_forward_fill",
+    "skip_calibration_gate_reason": "AAA has no public daily historical archive. Synthetic archive built from EIA weekly forward-fill + Kalshi implied bounds. Three model revs (stationary, rolling-σ, Student-t) all failed the 8pp gate at 29-44pp. Cap-raise null-test ruled out saturation. Diagnosed: archive is structurally biased; revalidate after auto_theo/archive_aaa_daily.py accumulates >=14 days of real-AAA-daily.",
+    "trip_max_loss_usd_override": 5.0
+  }
+}

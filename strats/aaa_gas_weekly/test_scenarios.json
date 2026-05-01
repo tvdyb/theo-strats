@@ -1,0 +1,52 @@
+[
+  {
+    "scenario": "baseline_tradable_3_days_out",
+    "now_iso": "2026-05-01T15:00:00Z",
+    "event_ticker": "KXAAAGASW-26MAY04-4.300",
+    "archive_overrides": {"aaa": {"national_regular": {"2026-05-01": {"value": 4.310, "publication_timestamp": "2026-05-01T13:30:00Z"}}}},
+    "expected": "tradable",
+    "expected_pinning": false
+  },
+  {
+    "scenario": "inside_blackout_window_may4_12utc",
+    "now_iso": "2026-05-04T12:00:00Z",
+    "event_ticker": "KXAAAGASW-26MAY04-4.300",
+    "archive_overrides": {"aaa": {"national_regular": {"2026-05-03": {"value": 4.305, "publication_timestamp": "2026-05-03T13:30:00Z"}}}},
+    "expected": "blackout",
+    "expected_pinning": false
+  },
+  {
+    "scenario": "aaa_value_violates_range_low",
+    "now_iso": "2026-05-01T15:00:00Z",
+    "event_ticker": "KXAAAGASW-26MAY04-4.300",
+    "archive_overrides": {"aaa": {"national_regular": {"2026-05-01": {"value": 1.500, "publication_timestamp": "2026-05-01T13:30:00Z"}}}},
+    "expected": "insufficient_data",
+    "expected_pinning": false
+  },
+  {
+    "scenario": "aaa_daily_move_violation_live_only",
+    "now_iso": "2026-05-01T15:00:00Z",
+    "event_ticker": "KXAAAGASW-26MAY04-4.300",
+    "archive_overrides": {"aaa_live_html": {"today_str": "$5.000", "yesterday_str": "$4.300"}},
+    "expected": "insufficient_data",
+    "expected_pinning": false
+  },
+  {
+    "scenario": "resolution_day_pre_pin_stub_returns_false",
+    "now_iso": "2026-05-04T04:00:00Z",
+    "event_ticker": "KXAAAGASW-26MAY04-4.300",
+    "archive_overrides": {"aaa": {"national_regular": {"2026-05-04": {"value": 4.330, "publication_timestamp": "2026-05-04T03:00:00Z"}}}},
+    "expected": "tradable",
+    "expected_pinning": false,
+    "notes": "Stubbed _consecutive_stable returns False so we should NOT pin. Once the stability log is wired, replay this scenario with a stable-scrape archive and assert expected_pinning=true; for now the pipeline must continue normal NormalCDF quoting on resolution-day until proven stable."
+  },
+  {
+    "scenario": "horizon_negative_after_resolution",
+    "now_iso": "2026-05-04T15:00:00Z",
+    "event_ticker": "KXAAAGASW-26MAY04-4.300",
+    "archive_overrides": {"aaa": {"national_regular": {"2026-05-04": {"value": 4.330, "publication_timestamp": "2026-05-04T13:30:00Z"}}}},
+    "expected": "insufficient_data",
+    "expected_pinning": false,
+    "notes": "now is after resolution_timestamp 2026-05-04T14:00:00Z and outside the blackout window (which ends 14:30Z). Pipeline order: blackout check first; this now=15:00 is past the blackout end (14:30Z), so build_theos proceeds, then horizon_days <= 0 raises InsufficientDataError."
+  }
+]

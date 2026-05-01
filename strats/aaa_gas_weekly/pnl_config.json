@@ -1,0 +1,15 @@
+{
+  "events_tracked": [
+    "KXAAAGASW-26MAY04"
+  ],
+  "fills_observed": [],
+  "last_polled_at": null,
+  "max_loss_usd": 5.0,
+  "pipeline_name": "aaa:gas:weekly_threshold",
+  "rolling_pnl_usd": 0.0,
+  "rolling_window_h": 24,
+  "tripped": false,
+  "tripped_at": null,
+  "tripped_reason": null,
+  "position_limit_contracts": 25
+}
