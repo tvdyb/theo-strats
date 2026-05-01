@@ -1,0 +1,302 @@
+{
+  "name": "candidate_b_chain_linked_ratio_6metal",
+  "passed_gates": false,
+  "r2": 0.05117980719076587,
+  "sigma_idx_pts": 7.096492196670728,
+  "loo_hit_rate": 0.38461538461538464,
+  "loo_hits": 5,
+  "loo_n": 13,
+  "abs_resid_max": 12.420289081036344,
+  "mean_residual": -6.996113090560987e-14,
+  "per_event": [
+    {
+      "event_ticker": "KXTRUEV-26APR15",
+      "close_date": "2026-04-15",
+      "actual_midpoint": 1218.41,
+      "predicted": 1220.5155,
+      "residual": 2.1055,
+      "low": 1208.41,
+      "high": 1228.41
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR16",
+      "close_date": "2026-04-16",
+      "actual_midpoint": 1215.91,
+      "predicted": 1222.5151,
+      "residual": 6.6051,
+      "low": 1205.91,
+      "high": 1225.91
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR17",
+      "close_date": "2026-04-17",
+      "actual_midpoint": 1216.14,
+      "predicted": 1223.028,
+      "residual": 6.888,
+      "low": 1206.14,
+      "high": 1226.14
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR18",
+      "close_date": "2026-04-18",
+      "actual_midpoint": 1218.16,
+      "predicted": 1223.028,
+      "residual": 4.868,
+      "low": 1213.16,
+      "high": 1223.16
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR19",
+      "close_date": "2026-04-19",
+      "actual_midpoint": 1229.6,
+      "predicted": 1223.028,
+      "residual": -6.572,
+      "low": 1224.6,
+      "high": 1234.6
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR20",
+      "close_date": "2026-04-20",
+      "actual_midpoint": 1213.23,
+      "predicted": 1222.9204,
+      "residual": 9.6904,
+      "low": 1208.23,
+      "high": 1218.23
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR21",
+      "close_date": "2026-04-21",
+      "actual_midpoint": 1235.4,
+      "predicted": 1222.9797,
+      "residual": -12.4203,
+      "low": 1230.4,
+      "high": 1240.4
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR22",
+      "close_date": "2026-04-22",
+      "actual_midpoint": 1219.97,
+      "predicted": 1224.4551,
+      "residual": 4.4851,
+      "low": 1214.97,
+      "high": 1224.97
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR23",
+      "close_date": "2026-04-23",
+      "actual_midpoint": 1232.39,
+      "predicted": 1222.7626,
+      "residual": -9.6274,
+      "low": 1227.39,
+      "high": 1237.39
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR24",
+      "close_date": "2026-04-24",
+      "actual_midpoint": 1231.08,
+      "predicted": 1224.2507,
+      "residual": -6.8293,
+      "low": 1226.08,
+      "high": 1236.08
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR27",
+      "close_date": "2026-04-27",
+      "actual_midpoint": 1232.24,
+      "predicted": 1225.158,
+      "residual": -7.082,
+      "low": 1227.24,
+      "high": 1237.24
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR28",
+      "close_date": "2026-04-28",
+      "actual_midpoint": 1221.95,
+      "predicted": 1224.5894,
+      "residual": 2.6394,
+      "low": 1216.95,
+      "high": 1226.95
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR29",
+      "close_date": "2026-04-29",
+      "actual_midpoint": 1220.06,
+      "predicted": 1225.3097,
+      "residual": 5.2497,
+      "low": 1215.06,
+      "high": 1225.06
+    }
+  ],
+  "loo_details": [
+    {
+      "event_ticker": "KXTRUEV-26APR15",
+      "actual_midpoint": 1218.41,
+      "raw_pred": 1220.5155,
+      "loo_offset_b": 0.1755,
+      "adj_pred": 1220.691,
+      "low": 1208.41,
+      "high": 1228.41,
+      "in_boundary_band": true
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR16",
+      "actual_midpoint": 1215.91,
+      "raw_pred": 1222.5151,
+      "loo_offset_b": 0.5504,
+      "adj_pred": 1223.0655,
+      "low": 1205.91,
+      "high": 1225.91,
+      "in_boundary_band": true
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR17",
+      "actual_midpoint": 1216.14,
+      "raw_pred": 1223.028,
+      "loo_offset_b": 0.574,
+      "adj_pred": 1223.602,
+      "low": 1206.14,
+      "high": 1226.14,
+      "in_boundary_band": true
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR18",
+      "actual_midpoint": 1218.16,
+      "raw_pred": 1223.028,
+      "loo_offset_b": 0.4057,
+      "adj_pred": 1223.4336,
+      "low": 1213.16,
+      "high": 1223.16,
+      "in_boundary_band": false
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR19",
+      "actual_midpoint": 1229.6,
+      "raw_pred": 1223.028,
+      "loo_offset_b": -0.5477,
+      "adj_pred": 1222.4803,
+      "low": 1224.6,
+      "high": 1234.6,
+      "in_boundary_band": false
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR20",
+      "actual_midpoint": 1213.23,
+      "raw_pred": 1222.9204,
+      "loo_offset_b": 0.8075,
+      "adj_pred": 1223.7279,
+      "low": 1208.23,
+      "high": 1218.23,
+      "in_boundary_band": false
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR21",
+      "actual_midpoint": 1235.4,
+      "raw_pred": 1222.9797,
+      "loo_offset_b": -1.035,
+      "adj_pred": 1221.9447,
+      "low": 1230.4,
+      "high": 1240.4,
+      "in_boundary_band": false
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR22",
+      "actual_midpoint": 1219.97,
+      "raw_pred": 1224.4551,
+      "loo_offset_b": 0.3738,
+      "adj_pred": 1224.8289,
+      "low": 1214.97,
+      "high": 1224.97,
+      "in_boundary_band": true
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR23",
+      "actual_midpoint": 1232.39,
+      "raw_pred": 1222.7626,
+      "loo_offset_b": -0.8023,
+      "adj_pred": 1221.9603,
+      "low": 1227.39,
+      "high": 1237.39,
+      "in_boundary_band": false
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR24",
+      "actual_midpoint": 1231.08,
+      "raw_pred": 1224.2507,
+      "loo_offset_b": -0.5691,
+      "adj_pred": 1223.6816,
+      "low": 1226.08,
+      "high": 1236.08,
+      "in_boundary_band": false
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR27",
+      "actual_midpoint": 1232.24,
+      "raw_pred": 1225.158,
+      "loo_offset_b": -0.5902,
+      "adj_pred": 1224.5678,
+      "low": 1227.24,
+      "high": 1237.24,
+      "in_boundary_band": false
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR28",
+      "actual_midpoint": 1221.95,
+      "raw_pred": 1224.5894,
+      "loo_offset_b": 0.2199,
+      "adj_pred": 1224.8093,
+      "low": 1216.95,
+      "high": 1226.95,
+      "in_boundary_band": true
+    },
+    {
+      "event_ticker": "KXTRUEV-26APR29",
+      "actual_midpoint": 1220.06,
+      "raw_pred": 1225.3097,
+      "loo_offset_b": 0.4375,
+      "adj_pred": 1225.7472,
+      "low": 1215.06,
+      "high": 1225.06,
+      "in_boundary_band": false
+    }
+  ],
+  "formula": "index(t) = level(rebal) * sum(W_rebal*P(t))/sum(W_rebal*P(rebal))   [chained quarterly from 2018-01-01]",
+  "base_anchor_2018_01_01": 100.0,
+  "constant_offset_applied": 1111.1505502309958,
+  "metals_used": [
+    "nickel",
+    "copper",
+    "cobalt",
+    "palladium",
+    "lithium",
+    "platinum"
+  ],
+  "metals_used_full_basket": [
+    "nickel",
+    "copper",
+    "cobalt",
+    "palladium",
+    "lithium",
+    "platinum"
+  ],
+  "metals_data_quality": {
+    "nickel": "WisdomTree NICK.L ETC scaled to LME nickel USD/T (anchored to WB monthly on 2026-03-15). DAILY proxy, not LME spot.",
+    "copper": "Yahoo HG=F COMEX copper $/lb daily. Methodology unit ambiguity \u2014 copper weight (38.65%) is a dollar-share, but on rebal day W*P_lb is tiny; methodology likely treats kg/vehicle * $/kg internally so the published W absorbs the unit basis.",
+    "cobalt": "Sparse public quarterly anchors from TradingEconomics/news prints (LME cobalt USD/T), forward-filled. NO daily granularity \u2014 index moves attributed to cobalt within a quarter are 0.",
+    "palladium": "Yahoo PA=F NYMEX palladium $/oz daily. Authoritative spot.",
+    "lithium": "LIT ETF (Yahoo) rescaled to ~24,400 USD/MT via 2026-04-30 anchor. PROXY \u2014 LIT moves on equity sentiment more than lithium spot. In the 2-week event window LIT ETF rose +23% while real lithium carbonate spot rose ~7-8%.",
+    "platinum": "Yahoo PL=F NYMEX platinum $/oz daily. Authoritative spot."
+  },
+  "n_events": 13,
+  "event_window": "2026-04-15 to 2026-04-29",
+  "weights_anchor_used": "2025-10-01 (latest documented in v1.41 PDF)",
+  "no_rebal_in_event_window": true,
+  "forward_applicability": {
+    "latest_documented_weights_row": "2025-10-01",
+    "drift_until_2026_05_01": "Weights for 2026-Q1 (2026-01-01) and 2026-Q2 (2026-04-01) are NOT in v1.41 PDF (Oct 2025). Live pipeline must pin to 2025-10-01 weights and document drift risk in WATCH block. Two unrebalanced quarters since the last documented row -> O(weight_delta * realized_metal_price_move) bps of error, dominated by lithium and copper which together carry ~72% weight.",
+    "live_pipeline_path_recommended": "Path (i): pin to 2025-10-01 weights and recheck for v1.42+ PDF in the public Truflation supabase bucket weekly. Refusal triggers: (a) methodology PDF hash changes (re-derive weights before quoting), (b) any of nickel/copper/palladium/platinum spot prices stale > 3 trading days, (c) live Truflation API publishes a value > 25 idx pts away from our reconstruction (likely a weight rebal or methodology change).",
+    "lithium_data_source_blocker": "FREE daily lithium spot (CNY/T or USD/MT, battery-grade) does NOT exist as of 2026-04-30. Yahoo has no lithium futures ticker; CME LICF futures are not indexed by Yahoo; SMM/Fastmarkets/Investing all paywall daily history. The LIT ETF moves with equity sentiment (e.g., Albemarle earnings) and overshoots spot moves by ~3x in tight windows. Methodology-faithful reconstruction is structurally bottlenecked on lithium data acquisition.",
+    "cobalt_data_source_blocker": "FREE daily cobalt LME spot also unavailable. We use sparse quarterly anchor prints (TradingEconomics/news), forward-filled. Cobalt has only 8.22% weight so the impact is smaller than lithium.",
+    "structural_vs_statistical_fit_note": "The methodology approach has structural correctness \u2014 when the price inputs are right, the formula gives the index. Therefore IF acceptance gates were met it would generalize OOS. Conversely the FAIL we report is a DATA-ACCESS failure (lithium proxy is too volatile), NOT a model-mis-specification failure. With paid lithium spot data, the candidate A formula would likely pass."
+  },
+  "overall_acceptance_pass": false
+}

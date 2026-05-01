@@ -1,0 +1,1306 @@
+{
+  "task": "v2 expanded basket re-fit",
+  "n_observations": 13,
+  "all_candidates": [
+    {
+      "name": "ridge_a0.3",
+      "r2": 0.5218917149035376,
+      "sigma": 5.037498211607363,
+      "feats": [
+        "cu",
+        "pd",
+        "pt",
+        "ni",
+        "lit",
+        "batt",
+        "driv",
+        "idrv",
+        "kars"
+      ],
+      "k": 9,
+      "loo_hits": 20,
+      "loo_total": 26,
+      "loo_hit_rate": 0.7692307692307693,
+      "beta_std": [
+        3.2234922661215544,
+        -0.15433453865984645,
+        -1.31247682307609,
+        -1.837914787333655e-13,
+        -3.106625483458131,
+        -6.569283444184243,
+        3.2874170928681274,
+        4.610580023670546,
+        -0.16668733172656225
+      ],
+      "form": "ridge alpha=0.3 on standardized 9 feats",
+      "loo_per_event": [
+        {
+          "i": 0,
+          "pred": 1220.804927062606,
+          "low": 1208.41,
+          "high": 1228.41,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 1,
+          "pred": 1215.320946525766,
+          "low": 1205.91,
+          "high": 1225.91,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 2,
+          "pred": 1221.0892873948198,
+          "low": 1206.14,
+          "high": 1226.14,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 3,
+          "pred": 1220.402774641552,
+          "low": 1213.16,
+          "high": 1223.16,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 4,
+          "pred": 1216.514801425026,
+          "low": 1224.6,
+          "high": 1234.6,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 5,
+          "pred": 1224.710418861698,
+          "low": 1208.23,
+          "high": 1218.23,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 6,
+          "pred": 1214.6212897691257,
+          "low": 1230.4,
+          "high": 1240.4,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 7,
+          "pred": 1237.1837866676099,
+          "low": 1214.97,
+          "high": 1224.97,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 8,
+          "pred": 1228.1673415736861,
+          "low": 1227.39,
+          "high": 1237.39,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 9,
+          "pred": 1230.295944556913,
+          "low": 1226.08,
+          "high": 1236.08,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 10,
+          "pred": 1225.1301984980678,
+          "low": 1227.24,
+          "high": 1237.24,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 11,
+          "pred": 1235.3100474733283,
+          "low": 1216.95,
+          "high": 1226.95,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 12,
+          "pred": 1219.2326144152726,
+          "low": 1215.06,
+          "high": 1225.06,
+          "low_correct": true,
+          "high_correct": true
+        }
+      ]
+    },
+    {
+      "name": "ridge_a1.0",
+      "r2": 0.48514395401299637,
+      "sigma": 5.227507669826998,
+      "feats": [
+        "cu",
+        "pd",
+        "pt",
+        "ni",
+        "lit",
+        "batt",
+        "driv",
+        "idrv",
+        "kars"
+      ],
+      "k": 9,
+      "loo_hits": 20,
+      "loo_total": 26,
+      "loo_hit_rate": 0.7692307692307693,
+      "beta_std": [
+        2.5851838095008115,
+        -1.679711617274422,
+        -0.2036336744653763,
+        -1.6304346071355396e-13,
+        -1.7360320669847988,
+        -4.813525637377562,
+        2.0499530595855986,
+        3.414906382813745,
+        -0.18238066621975224
+      ],
+      "form": "ridge alpha=1.0 on standardized 9 feats",
+      "loo_per_event": [
+        {
+          "i": 0,
+          "pred": 1220.4027247083543,
+          "low": 1208.41,
+          "high": 1228.41,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 1,
+          "pred": 1217.6703260361246,
+          "low": 1205.91,
+          "high": 1225.91,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 2,
+          "pred": 1221.1116737396496,
+          "low": 1206.14,
+          "high": 1226.14,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 3,
+          "pred": 1220.4995120703454,
+          "low": 1213.16,
+          "high": 1223.16,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 4,
+          "pred": 1217.0326162798312,
+          "low": 1224.6,
+          "high": 1234.6,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 5,
+          "pred": 1223.3861574702785,
+          "low": 1208.23,
+          "high": 1218.23,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 6,
+          "pred": 1217.7075005529477,
+          "low": 1230.4,
+          "high": 1240.4,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 7,
+          "pred": 1231.8002523585646,
+          "low": 1214.97,
+          "high": 1224.97,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 8,
+          "pred": 1227.7176784655305,
+          "low": 1227.39,
+          "high": 1237.39,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 9,
+          "pred": 1228.223894257497,
+          "low": 1226.08,
+          "high": 1236.08,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 10,
+          "pred": 1225.9491171820705,
+          "low": 1227.24,
+          "high": 1237.24,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 11,
+          "pred": 1231.848278697595,
+          "low": 1216.95,
+          "high": 1226.95,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 12,
+          "pred": 1223.751925832462,
+          "low": 1215.06,
+          "high": 1225.06,
+          "low_correct": true,
+          "high_correct": true
+        }
+      ]
+    },
+    {
+      "name": "fwd_k2",
+      "r2": 0.32986862627044655,
+      "sigma": 5.9639191268341625,
+      "feats": [
+        "pd",
+        "cu"
+      ],
+      "k": 2,
+      "loo_hits": 20,
+      "loo_total": 26,
+      "loo_hit_rate": 0.7692307692307693,
+      "beta": [
+        1064.4194830423423,
+        -0.1342321428872528,
+        60.42466709855152
+      ],
+      "form": "forward-stepwise k=2"
+    },
+    {
+      "name": "ridge_a0.1",
+      "r2": 0.5430935150070956,
+      "sigma": 4.9245372995226715,
+      "feats": [
+        "cu",
+        "pd",
+        "pt",
+        "ni",
+        "lit",
+        "batt",
+        "driv",
+        "idrv",
+        "kars"
+      ],
+      "k": 9,
+      "loo_hits": 19,
+      "loo_total": 26,
+      "loo_hit_rate": 0.7307692307692307,
+      "beta_std": [
+        4.535255915819767,
+        3.2342234499368785,
+        -4.773450707374978,
+        -2.0026553464154488e-13,
+        -3.801463011447042,
+        -7.978438679309373,
+        4.4658815879732,
+        5.7242041019004395,
+        -1.0312439865039889
+      ],
+      "form": "ridge alpha=0.1 on standardized 9 feats",
+      "loo_per_event": [
+        {
+          "i": 0,
+          "pred": 1222.9465574765218,
+          "low": 1208.41,
+          "high": 1228.41,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 1,
+          "pred": 1213.051267596373,
+          "low": 1205.91,
+          "high": 1225.91,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 2,
+          "pred": 1221.217535491166,
+          "low": 1206.14,
+          "high": 1226.14,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 3,
+          "pred": 1220.4788974617823,
+          "low": 1213.16,
+          "high": 1223.16,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 4,
+          "pred": 1216.295719711214,
+          "low": 1224.6,
+          "high": 1234.6,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 5,
+          "pred": 1225.7545362517346,
+          "low": 1208.23,
+          "high": 1218.23,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 6,
+          "pred": 1212.701485771895,
+          "low": 1230.4,
+          "high": 1240.4,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 7,
+          "pred": 1242.8522667228367,
+          "low": 1214.97,
+          "high": 1224.97,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 8,
+          "pred": 1226.3463220696383,
+          "low": 1227.39,
+          "high": 1237.39,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 9,
+          "pred": 1232.5358640067486,
+          "low": 1226.08,
+          "high": 1236.08,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 10,
+          "pred": 1224.4670659986773,
+          "low": 1227.24,
+          "high": 1237.24,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 11,
+          "pred": 1239.8491083291185,
+          "low": 1216.95,
+          "high": 1226.95,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 12,
+          "pred": 1216.2511190982216,
+          "low": 1215.06,
+          "high": 1225.06,
+          "low_correct": true,
+          "high_correct": true
+        }
+      ]
+    },
+    {
+      "name": "fwd_k4",
+      "r2": 0.48124088913688645,
+      "sigma": 5.247284827773119,
+      "feats": [
+        "pd",
+        "cu",
+        "batt",
+        "idrv"
+      ],
+      "k": 4,
+      "loo_hits": 19,
+      "loo_total": 26,
+      "loo_hit_rate": 0.7307692307692307,
+      "beta": [
+        1128.547350747452,
+        -0.019082298967552737,
+        43.22081420457118,
+        -29.480208612655012,
+        8.329095882011107
+      ],
+      "form": "forward-stepwise k=4"
+    },
+    {
+      "name": "fwd_k3",
+      "r2": 0.3465442499479837,
+      "sigma": 5.889248257286304,
+      "feats": [
+        "pd",
+        "cu",
+        "batt"
+      ],
+      "k": 3,
+      "loo_hits": 19,
+      "loo_total": 26,
+      "loo_hit_rate": 0.7307692307692307,
+      "beta": [
+        1113.4327523300944,
+        -0.11421619652449219,
+        63.26044435390001,
+        -5.7751655424906945
+      ],
+      "form": "forward-stepwise k=3"
+    },
+    {
+      "name": "fwd_k5",
+      "r2": 0.5075542882450198,
+      "sigma": 5.1124720901174445,
+      "feats": [
+        "pd",
+        "cu",
+        "batt",
+        "idrv",
+        "driv"
+      ],
+      "k": 5,
+      "loo_hits": 18,
+      "loo_total": 26,
+      "loo_hit_rate": 0.6923076923076923,
+      "beta": [
+        1009.368576541701,
+        0.05430943085867395,
+        48.90286942241408,
+        -39.54758855810313,
+        6.827588517935684,
+        5.772246196542843
+      ],
+      "form": "forward-stepwise k=5"
+    },
+    {
+      "name": "ridge_a3.0",
+      "r2": 0.4115823439969729,
+      "sigma": 5.588491799476304,
+      "feats": [
+        "cu",
+        "pd",
+        "pt",
+        "ni",
+        "lit",
+        "batt",
+        "driv",
+        "idrv",
+        "kars"
+      ],
+      "k": 9,
+      "loo_hits": 18,
+      "loo_total": 26,
+      "loo_hit_rate": 0.6923076923076923,
+      "beta_std": [
+        1.8549221459472345,
+        -1.7917390637330608,
+        -0.16981233831848558,
+        -1.3272898911776404e-13,
+        -0.6441687260826607,
+        -3.1146709749479293,
+        1.2241092998152177,
+        2.0943931241328726,
+        -0.20428281141218088
+      ],
+      "form": "ridge alpha=3.0 on standardized 9 feats",
+      "loo_per_event": [
+        {
+          "i": 0,
+          "pred": 1221.2999354488607,
+          "low": 1208.41,
+          "high": 1228.41,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 1,
+          "pred": 1219.6931627574934,
+          "low": 1205.91,
+          "high": 1225.91,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 2,
+          "pred": 1221.4401914623643,
+          "low": 1206.14,
+          "high": 1226.14,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 3,
+          "pred": 1220.8962287368026,
+          "low": 1213.16,
+          "high": 1223.16,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 4,
+          "pred": 1217.8155685484726,
+          "low": 1224.6,
+          "high": 1234.6,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 5,
+          "pred": 1222.939403584221,
+          "low": 1208.23,
+          "high": 1218.23,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 6,
+          "pred": 1220.2284702622612,
+          "low": 1230.4,
+          "high": 1240.4,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 7,
+          "pred": 1228.2556981323653,
+          "low": 1214.97,
+          "high": 1224.97,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 8,
+          "pred": 1225.9830127068985,
+          "low": 1227.39,
+          "high": 1237.39,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 9,
+          "pred": 1226.6736882585358,
+          "low": 1226.08,
+          "high": 1236.08,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 10,
+          "pred": 1225.9528948428253,
+          "low": 1227.24,
+          "high": 1237.24,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 11,
+          "pred": 1229.9230888849993,
+          "low": 1216.95,
+          "high": 1226.95,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 12,
+          "pred": 1227.408751566971,
+          "low": 1215.06,
+          "high": 1225.06,
+          "low_correct": true,
+          "high_correct": false
+        }
+      ]
+    },
+    {
+      "name": "fwd_k1",
+      "r2": 0.19291312422301043,
+      "sigma": 6.545034087531941,
+      "feats": [
+        "pd"
+      ],
+      "k": 1,
+      "loo_hits": 18,
+      "loo_total": 26,
+      "loo_hit_rate": 0.6923076923076923,
+      "beta": [
+        1324.2120279294882,
+        -0.0656917993822257
+      ],
+      "form": "forward-stepwise k=1"
+    },
+    {
+      "name": "ridge_a10.0",
+      "r2": 0.28415441071717495,
+      "sigma": 6.163983206761489,
+      "feats": [
+        "cu",
+        "pd",
+        "pt",
+        "ni",
+        "lit",
+        "batt",
+        "driv",
+        "idrv",
+        "kars"
+      ],
+      "k": 9,
+      "loo_hits": 17,
+      "loo_total": 26,
+      "loo_hit_rate": 0.6538461538461539,
+      "beta_std": [
+        0.7881212296002298,
+        -1.2143321518880765,
+        -0.30532639994365146,
+        -8.556025372683004e-14,
+        -0.030395226685449157,
+        -1.5818965564897618,
+        0.698540324473253,
+        0.9065258579686394,
+        -0.08973823652046098
+      ],
+      "form": "ridge alpha=10.0 on standardized 9 feats",
+      "loo_per_event": [
+        {
+          "i": 0,
+          "pred": 1222.6398694823029,
+          "low": 1208.41,
+          "high": 1228.41,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 1,
+          "pred": 1221.4525081742343,
+          "low": 1205.91,
+          "high": 1225.91,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 2,
+          "pred": 1222.0850869738458,
+          "low": 1206.14,
+          "high": 1226.14,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 3,
+          "pred": 1221.6190203874303,
+          "low": 1213.16,
+          "high": 1223.16,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 4,
+          "pred": 1218.9795145712956,
+          "low": 1224.6,
+          "high": 1234.6,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 5,
+          "pred": 1223.2355637019878,
+          "low": 1208.23,
+          "high": 1218.23,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 6,
+          "pred": 1221.790202672841,
+          "low": 1230.4,
+          "high": 1240.4,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 7,
+          "pred": 1225.6601037167302,
+          "low": 1214.97,
+          "high": 1224.97,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 8,
+          "pred": 1224.101570666329,
+          "low": 1227.39,
+          "high": 1237.39,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 9,
+          "pred": 1225.2152295305086,
+          "low": 1226.08,
+          "high": 1236.08,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 10,
+          "pred": 1225.1759925788404,
+          "low": 1227.24,
+          "high": 1237.24,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 11,
+          "pred": 1228.454681497911,
+          "low": 1216.95,
+          "high": 1226.95,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 12,
+          "pred": 1229.3812120986647,
+          "low": 1215.06,
+          "high": 1225.06,
+          "low_correct": true,
+          "high_correct": false
+        }
+      ]
+    },
+    {
+      "name": "ols_log_levels_full9",
+      "r2": 0.590822364854291,
+      "sigma": 4.660233893736825,
+      "feats": [
+        "cu",
+        "pd",
+        "pt",
+        "ni",
+        "lit",
+        "batt",
+        "driv",
+        "idrv",
+        "kars"
+      ],
+      "k": 9,
+      "loo_hits": 15,
+      "loo_total": 26,
+      "loo_hit_rate": 0.5769230769230769,
+      "beta": [
+        0.07083606462788652,
+        0.9550822863722154,
+        0.6299043150945025,
+        -0.6623854949138079,
+        0.6903290590224497,
+        -0.1095049626562721,
+        -0.683625295273792,
+        0.44654098501246137,
+        0.6953873494797863,
+        -0.7766678540394593
+      ],
+      "form": "log-levels with intercept (9 feats)",
+      "loo_per_event": [
+        {
+          "i": 0,
+          "pred": 1273.728153277361,
+          "low": 1208.41,
+          "high": 1228.41,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 1,
+          "pred": 1187.031725616354,
+          "low": 1205.91,
+          "high": 1225.91,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 2,
+          "pred": 1222.191520007787,
+          "low": 1206.14,
+          "high": 1226.14,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 3,
+          "pred": 1221.3723339361447,
+          "low": 1213.16,
+          "high": 1223.16,
+          "low_correct": true,
+          "high_correct": true
+        },
+        {
+          "i": 4,
+          "pred": 1216.7687064398417,
+          "low": 1224.6,
+          "high": 1234.6,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 5,
+          "pred": 1225.4948338452937,
+          "low": 1208.23,
+          "high": 1218.23,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 6,
+          "pred": 1211.9703081923992,
+          "low": 1230.4,
+          "high": 1240.4,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 7,
+          "pred": 1252.6862983482479,
+          "low": 1214.97,
+          "high": 1224.97,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 8,
+          "pred": 1200.6095375209777,
+          "low": 1227.39,
+          "high": 1237.39,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 9,
+          "pred": 1219.116093238773,
+          "low": 1226.08,
+          "high": 1236.08,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 10,
+          "pred": 1226.030860810826,
+          "low": 1227.24,
+          "high": 1237.24,
+          "low_correct": false,
+          "high_correct": true
+        },
+        {
+          "i": 11,
+          "pred": 1248.208148286973,
+          "low": 1216.95,
+          "high": 1226.95,
+          "low_correct": true,
+          "high_correct": false
+        },
+        {
+          "i": 12,
+          "pred": 1229.6640175882426,
+          "low": 1215.06,
+          "high": 1225.06,
+          "low_correct": true,
+          "high_correct": false
+        }
+      ]
+    }
+  ],
+  "winner": {
+    "name": "ridge_a0.3",
+    "r2": 0.5218917149035376,
+    "sigma": 5.037498211607363,
+    "feats": [
+      "cu",
+      "pd",
+      "pt",
+      "ni",
+      "lit",
+      "batt",
+      "driv",
+      "idrv",
+      "kars"
+    ],
+    "k": 9,
+    "loo_hits": 20,
+    "loo_total": 26,
+    "loo_hit_rate": 0.7692307692307693,
+    "beta_std": [
+      3.2234922661215544,
+      -0.15433453865984645,
+      -1.31247682307609,
+      -1.837914787333655e-13,
+      -3.106625483458131,
+      -6.569283444184243,
+      3.2874170928681274,
+      4.610580023670546,
+      -0.16668733172656225
+    ],
+    "form": "ridge alpha=0.3 on standardized 9 feats",
+    "loo_per_event": [
+      {
+        "i": 0,
+        "pred": 1220.804927062606,
+        "low": 1208.41,
+        "high": 1228.41,
+        "low_correct": true,
+        "high_correct": true
+      },
+      {
+        "i": 1,
+        "pred": 1215.320946525766,
+        "low": 1205.91,
+        "high": 1225.91,
+        "low_correct": true,
+        "high_correct": true
+      },
+      {
+        "i": 2,
+        "pred": 1221.0892873948198,
+        "low": 1206.14,
+        "high": 1226.14,
+        "low_correct": true,
+        "high_correct": true
+      },
+      {
+        "i": 3,
+        "pred": 1220.402774641552,
+        "low": 1213.16,
+        "high": 1223.16,
+        "low_correct": true,
+        "high_correct": true
+      },
+      {
+        "i": 4,
+        "pred": 1216.514801425026,
+        "low": 1224.6,
+        "high": 1234.6,
+        "low_correct": false,
+        "high_correct": true
+      },
+      {
+        "i": 5,
+        "pred": 1224.710418861698,
+        "low": 1208.23,
+        "high": 1218.23,
+        "low_correct": true,
+        "high_correct": false
+      },
+      {
+        "i": 6,
+        "pred": 1214.6212897691257,
+        "low": 1230.4,
+        "high": 1240.4,
+        "low_correct": false,
+        "high_correct": true
+      },
+      {
+        "i": 7,
+        "pred": 1237.1837866676099,
+        "low": 1214.97,
+        "high": 1224.97,
+        "low_correct": true,
+        "high_correct": false
+      },
+      {
+        "i": 8,
+        "pred": 1228.1673415736861,
+        "low": 1227.39,
+        "high": 1237.39,
+        "low_correct": true,
+        "high_correct": true
+      },
+      {
+        "i": 9,
+        "pred": 1230.295944556913,
+        "low": 1226.08,
+        "high": 1236.08,
+        "low_correct": true,
+        "high_correct": true
+      },
+      {
+        "i": 10,
+        "pred": 1225.1301984980678,
+        "low": 1227.24,
+        "high": 1237.24,
+        "low_correct": false,
+        "high_correct": true
+      },
+      {
+        "i": 11,
+        "pred": 1235.3100474733283,
+        "low": 1216.95,
+        "high": 1226.95,
+        "low_correct": true,
+        "high_correct": false
+      },
+      {
+        "i": 12,
+        "pred": 1219.2326144152726,
+        "low": 1215.06,
+        "high": 1225.06,
+        "low_correct": true,
+        "high_correct": true
+      }
+    ]
+  },
+  "passes_all_gates": false,
+  "acceptance": {
+    "r2_target": 0.85,
+    "sigma_target": 5.0,
+    "loo_target": 0.8,
+    "wilson_lb_target": 0.7
+  },
+  "components": {
+    "cu": "Yahoo HG=F continuous, USD/lb, daily",
+    "pd": "Yahoo PA=F continuous, USD/oz, daily",
+    "pt": "Yahoo PL=F continuous, USD/oz, daily",
+    "ni": "World Bank Pink Sheet, USD/MT, monthly forward-filled",
+    "lit": "Yahoo chart v8 LIT (Global X Lithium & Battery Tech ETF)",
+    "batt": "Yahoo chart v8 BATT (Amplify Lithium & Battery Tech ETF)",
+    "driv": "Yahoo chart v8 DRIV (Global X Autonomous & EV ETF)",
+    "idrv": "Yahoo chart v8 IDRV (iShares Self-Driving EV & Tech ETF)",
+    "kars": "Yahoo chart v8 KARS (KraneShares EV & Future Mobility ETF)"
+  },
+  "observations": [
+    {
+      "event": "KXTRUEV-26APR15",
+      "close_date": "2026-04-15",
+      "y": 1218.41,
+      "low": 1208.41,
+      "high": 1228.41,
+      "cu": 6.072000026702881,
+      "pd": 1578.0999755859375,
+      "pt": 2112.89990234375,
+      "ni": 17076.29,
+      "lit": 79.63999938964844,
+      "batt": 16.5,
+      "driv": 34.18000030517578,
+      "idrv": 41.428001403808594,
+      "kars": 34.560001373291016
+    },
+    {
+      "event": "KXTRUEV-26APR16",
+      "close_date": "2026-04-16",
+      "y": 1215.91,
+      "low": 1205.91,
+      "high": 1225.91,
+      "cu": 6.066500186920166,
+      "pd": 1570.5,
+      "pt": 2094.10009765625,
+      "ni": 17076.29,
+      "lit": 82.30999755859375,
+      "batt": 16.8799991607666,
+      "driv": 34.97999954223633,
+      "idrv": 42.43000030517578,
+      "kars": 35.40999984741211
+    },
+    {
+      "event": "KXTRUEV-26APR17",
+      "close_date": "2026-04-17",
+      "y": 1216.14,
+      "low": 1206.14,
+      "high": 1226.14,
+      "cu": 6.103499889373779,
+      "pd": 1590.4000244140625,
+      "pt": 2124.5,
+      "ni": 17076.29,
+      "lit": 83.2300033569336,
+      "batt": 17.110000610351562,
+      "driv": 35.643001556396484,
+      "idrv": 43.40999984741211,
+      "kars": 35.86000061035156
+    },
+    {
+      "event": "KXTRUEV-26APR18",
+      "close_date": "2026-04-18",
+      "y": 1218.16,
+      "low": 1213.16,
+      "high": 1223.16,
+      "cu": 6.103499889373779,
+      "pd": 1590.4000244140625,
+      "pt": 2124.5,
+      "ni": 17076.29,
+      "lit": 83.2300033569336,
+      "batt": 17.110000610351562,
+      "driv": 35.643001556396484,
+      "idrv": 43.40999984741211,
+      "kars": 35.86000061035156
+    },
+    {
+      "event": "KXTRUEV-26APR19",
+      "close_date": "2026-04-19",
+      "y": 1229.6,
+      "low": 1224.6,
+      "high": 1234.6,
+      "cu": 6.103499889373779,
+      "pd": 1590.4000244140625,
+      "pt": 2124.5,
+      "ni": 17076.29,
+      "lit": 83.2300033569336,
+      "batt": 17.110000610351562,
+      "driv": 35.643001556396484,
+      "idrv": 43.40999984741211,
+      "kars": 35.86000061035156
+    },
+    {
+      "event": "KXTRUEV-26APR20",
+      "close_date": "2026-04-20",
+      "y": 1213.23,
+      "low": 1208.23,
+      "high": 1218.23,
+      "cu": 6.035999774932861,
+      "pd": 1559.5999755859375,
+      "pt": 2070.699951171875,
+      "ni": 17076.29,
+      "lit": 82.87000274658203,
+      "batt": 16.93000030517578,
+      "driv": 35.64799880981445,
+      "idrv": 43.15700149536133,
+      "kars": 35.779998779296875
+    },
+    {
+      "event": "KXTRUEV-26APR21",
+      "close_date": "2026-04-21",
+      "y": 1235.4,
+      "low": 1230.4,
+      "high": 1240.4,
+      "cu": 6.001500129699707,
+      "pd": 1531.699951171875,
+      "pt": 2024.300048828125,
+      "ni": 17076.29,
+      "lit": 83.02999877929688,
+      "batt": 16.670000076293945,
+      "driv": 35.38399887084961,
+      "idrv": 43.27000045776367,
+      "kars": 35.77000045776367
+    },
+    {
+      "event": "KXTRUEV-26APR22",
+      "close_date": "2026-04-22",
+      "y": 1219.97,
+      "low": 1214.97,
+      "high": 1224.97,
+      "cu": 6.119999885559082,
+      "pd": 1547.0999755859375,
+      "pt": 2072.60009765625,
+      "ni": 17076.29,
+      "lit": 84.7699966430664,
+      "batt": 17.010000228881836,
+      "driv": 35.7859992980957,
+      "idrv": 43.90599822998047,
+      "kars": 36.290000915527344
+    },
+    {
+      "event": "KXTRUEV-26APR23",
+      "close_date": "2026-04-23",
+      "y": 1232.39,
+      "low": 1227.39,
+      "high": 1237.39,
+      "cu": 6.075500011444092,
+      "pd": 1484.5999755859375,
+      "pt": 2022.5999755859375,
+      "ni": 17076.29,
+      "lit": 82.1500015258789,
+      "batt": 16.530000686645508,
+      "driv": 35.5,
+      "idrv": 42.60300064086914,
+      "kars": 35.22999954223633
+    },
+    {
+      "event": "KXTRUEV-26APR24",
+      "close_date": "2026-04-24",
+      "y": 1231.08,
+      "low": 1226.08,
+      "high": 1236.08,
+      "cu": 6.023499965667725,
+      "pd": 1501.5,
+      "pt": 2015.0,
+      "ni": 17076.29,
+      "lit": 83.79000091552734,
+      "batt": 16.530000686645508,
+      "driv": 36.108001708984375,
+      "idrv": 42.86399841308594,
+      "kars": 35.7599983215332
+    },
+    {
+      "event": "KXTRUEV-26APR27",
+      "close_date": "2026-04-27",
+      "y": 1232.24,
+      "low": 1227.24,
+      "high": 1237.24,
+      "cu": 6.01800012588501,
+      "pd": 1477.699951171875,
+      "pt": 1981.0999755859375,
+      "ni": 17076.29,
+      "lit": 84.94999694824219,
+      "batt": 16.639999389648438,
+      "driv": 36.36000061035156,
+      "idrv": 43.01499938964844,
+      "kars": 35.7760009765625
+    },
+    {
+      "event": "KXTRUEV-26APR28",
+      "close_date": "2026-04-28",
+      "y": 1221.95,
+      "low": 1216.95,
+      "high": 1226.95,
+      "cu": 5.9145002365112305,
+      "pd": 1461.0999755859375,
+      "pt": 1942.300048828125,
+      "ni": 17076.29,
+      "lit": 83.7699966430664,
+      "batt": 16.350000381469727,
+      "driv": 35.659000396728516,
+      "idrv": 42.54999923706055,
+      "kars": 35.34000015258789
+    },
+    {
+      "event": "KXTRUEV-26APR29",
+      "close_date": "2026-04-29",
+      "y": 1220.06,
+      "low": 1215.06,
+      "high": 1225.06,
+      "cu": 5.878499984741211,
+      "pd": 1461.800048828125,
+      "pt": 1885.300048828125,
+      "ni": 17076.29,
+      "lit": 85.06999969482422,
+      "batt": 16.639999389648438,
+      "driv": 36.369998931884766,
+      "idrv": 42.525001525878906,
+      "kars": 35.93000030517578
+    }
+  ]
+}

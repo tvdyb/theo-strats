@@ -1,0 +1,123 @@
+{
+  "n_events": 13,
+  "winner": "ridge_a0.3",
+  "events": [
+    {
+      "event": "KXTRUEV-26APR15",
+      "close_date": "2026-04-15",
+      "realized_truEV_low": 1208.41,
+      "realized_truEV_high": 1228.41,
+      "realized_truEV_mid": 1218.41,
+      "basket_implied_truEV": 1219.1355832678046,
+      "abs_error_vs_realized_mid": 0.7255832678044953
+    },
+    {
+      "event": "KXTRUEV-26APR16",
+      "close_date": "2026-04-16",
+      "realized_truEV_low": 1205.91,
+      "realized_truEV_high": 1225.91,
+      "realized_truEV_mid": 1215.91,
+      "basket_implied_truEV": 1215.518403934503,
+      "abs_error_vs_realized_mid": 0.39159606549696946
+    },
+    {
+      "event": "KXTRUEV-26APR17",
+      "close_date": "2026-04-17",
+      "realized_truEV_low": 1206.14,
+      "realized_truEV_high": 1226.14,
+      "realized_truEV_mid": 1216.14,
+      "basket_implied_truEV": 1219.855989228311,
+      "abs_error_vs_realized_mid": 3.7159892283109457
+    },
+    {
+      "event": "KXTRUEV-26APR18",
+      "close_date": "2026-04-18",
+      "realized_truEV_low": 1213.16,
+      "realized_truEV_high": 1223.16,
+      "realized_truEV_mid": 1218.16,
+      "basket_implied_truEV": 1219.855989228311,
+      "abs_error_vs_realized_mid": 1.6959892283109639
+    },
+    {
+      "event": "KXTRUEV-26APR19",
+      "close_date": "2026-04-19",
+      "realized_truEV_low": 1224.6,
+      "realized_truEV_high": 1234.6,
+      "realized_truEV_mid": 1229.6,
+      "basket_implied_truEV": 1219.855989228311,
+      "abs_error_vs_realized_mid": 9.744010771688863
+    },
+    {
+      "event": "KXTRUEV-26APR20",
+      "close_date": "2026-04-20",
+      "realized_truEV_low": 1208.23,
+      "realized_truEV_high": 1218.23,
+      "realized_truEV_mid": 1213.23,
+      "basket_implied_truEV": 1221.4274089695386,
+      "abs_error_vs_realized_mid": 8.197408969538628
+    },
+    {
+      "event": "KXTRUEV-26APR21",
+      "close_date": "2026-04-21",
+      "realized_truEV_low": 1230.4,
+      "realized_truEV_high": 1240.4,
+      "realized_truEV_mid": 1235.4,
+      "basket_implied_truEV": 1226.3871958797217,
+      "abs_error_vs_realized_mid": 9.01280412027836
+    },
+    {
+      "event": "KXTRUEV-26APR22",
+      "close_date": "2026-04-22",
+      "realized_truEV_low": 1214.97,
+      "realized_truEV_high": 1224.97,
+      "realized_truEV_mid": 1219.97,
+      "basket_implied_truEV": 1225.217013697894,
+      "abs_error_vs_realized_mid": 5.247013697893863
+    },
+    {
+      "event": "KXTRUEV-26APR23",
+      "close_date": "2026-04-23",
+      "realized_truEV_low": 1227.39,
+      "realized_truEV_high": 1237.39,
+      "realized_truEV_mid": 1232.39,
+      "basket_implied_truEV": 1231.3385020677013,
+      "abs_error_vs_realized_mid": 1.0514979322988438
+    },
+    {
+      "event": "KXTRUEV-26APR24",
+      "close_date": "2026-04-24",
+      "realized_truEV_low": 1226.08,
+      "realized_truEV_high": 1236.08,
+      "realized_truEV_mid": 1231.08,
+      "basket_implied_truEV": 1230.7538838934304,
+      "abs_error_vs_realized_mid": 0.32611610656954326
+    },
+    {
+      "event": "KXTRUEV-26APR27",
+      "close_date": "2026-04-27",
+      "realized_truEV_low": 1227.24,
+      "realized_truEV_high": 1237.24,
+      "realized_truEV_mid": 1232.24,
+      "basket_implied_truEV": 1228.3852172382426,
+      "abs_error_vs_realized_mid": 3.8547827617574058
+    },
+    {
+      "event": "KXTRUEV-26APR28",
+      "close_date": "2026-04-28",
+      "realized_truEV_low": 1216.95,
+      "realized_truEV_high": 1226.95,
+      "realized_truEV_mid": 1221.95,
+      "basket_implied_truEV": 1226.9987059150465,
+      "abs_error_vs_realized_mid": 5.048705915046412
+    },
+    {
+      "event": "KXTRUEV-26APR29",
+      "close_date": "2026-04-29",
+      "realized_truEV_low": 1215.06,
+      "realized_truEV_high": 1225.06,
+      "realized_truEV_mid": 1220.06,
+      "basket_implied_truEV": 1219.8101174511842,
+      "abs_error_vs_realized_mid": 0.24988254881577632
+    }
+  ]
+}

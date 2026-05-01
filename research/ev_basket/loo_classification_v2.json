@@ -1,0 +1,113 @@
+{
+  "winner": "ridge_a0.3",
+  "loo_hits": 20,
+  "loo_total": 26,
+  "loo_hit_rate": 0.7692307692307693,
+  "wilson_95_lb": 0.5794807424804321,
+  "per_event": [
+    {
+      "i": 0,
+      "pred": 1220.804927062606,
+      "low": 1208.41,
+      "high": 1228.41,
+      "low_correct": true,
+      "high_correct": true
+    },
+    {
+      "i": 1,
+      "pred": 1215.320946525766,
+      "low": 1205.91,
+      "high": 1225.91,
+      "low_correct": true,
+      "high_correct": true
+    },
+    {
+      "i": 2,
+      "pred": 1221.0892873948198,
+      "low": 1206.14,
+      "high": 1226.14,
+      "low_correct": true,
+      "high_correct": true
+    },
+    {
+      "i": 3,
+      "pred": 1220.402774641552,
+      "low": 1213.16,
+      "high": 1223.16,
+      "low_correct": true,
+      "high_correct": true
+    },
+    {
+      "i": 4,
+      "pred": 1216.514801425026,
+      "low": 1224.6,
+      "high": 1234.6,
+      "low_correct": false,
+      "high_correct": true
+    },
+    {
+      "i": 5,
+      "pred": 1224.710418861698,
+      "low": 1208.23,
+      "high": 1218.23,
+      "low_correct": true,
+      "high_correct": false
+    },
+    {
+      "i": 6,
+      "pred": 1214.6212897691257,
+      "low": 1230.4,
+      "high": 1240.4,
+      "low_correct": false,
+      "high_correct": true
+    },
+    {
+      "i": 7,
+      "pred": 1237.1837866676099,
+      "low": 1214.97,
+      "high": 1224.97,
+      "low_correct": true,
+      "high_correct": false
+    },
+    {
+      "i": 8,
+      "pred": 1228.1673415736861,
+      "low": 1227.39,
+      "high": 1237.39,
+      "low_correct": true,
+      "high_correct": true
+    },
+    {
+      "i": 9,
+      "pred": 1230.295944556913,
+      "low": 1226.08,
+      "high": 1236.08,
+      "low_correct": true,
+      "high_correct": true
+    },
+    {
+      "i": 10,
+      "pred": 1225.1301984980678,
+      "low": 1227.24,
+      "high": 1237.24,
+      "low_correct": false,
+      "high_correct": true
+    },
+    {
+      "i": 11,
+      "pred": 1235.3100474733283,
+      "low": 1216.95,
+      "high": 1226.95,
+      "low_correct": true,
+      "high_correct": false
+    },
+    {
+      "i": 12,
+      "pred": 1219.2326144152726,
+      "low": 1215.06,
+      "high": 1225.06,
+      "low_correct": true,
+      "high_correct": true
+    }
+  ]
+}
