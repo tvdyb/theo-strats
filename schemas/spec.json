@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AutoTheoSpec",
+  "description": "Output of the Researcher subagent. Input to the Modeler subagent.",
+  "type": "object",
+  "required": ["event_ticker", "family_signature", "tradability", "researched_at"],
+  "properties": {
+    "event_ticker": {"type": "string"},
+    "family_signature": {
+      "type": "string",
+      "description": "Format: <family>:<subtype>:<resolution_pattern>. Two events with the same signature share a pipeline. Examples: 'truflation:eggs:daily_threshold', 'sports:nba:total_points', 'fed:rate_decision:meeting_outcome'."
+    },
+    "tradability": {
+      "enum": ["tradable", "blackout_only", "untradable_judgment", "untradable_no_signal", "untradable_too_volatile", "untradable_too_short", "untradable_no_source"]
+    },
+    "tradability_reason": {"type": "string"},
+    "underlying": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "unit": {"type": "string"},
+        "data_sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["purpose", "url", "publish_frequency", "format"],
+            "properties": {
+              "purpose": {"enum": ["primary", "cross_check", "leading_indicator"]},
+              "url": {"type": "string", "format": "uri"},
+              "method": {"enum": ["GET", "POST"], "default": "GET"},
+              "auth": {"enum": ["none", "api_key", "bearer"], "default": "none"},
+              "publish_frequency": {
+                "type": "string",
+                "description": "Free-form but standardized: 'daily', 'weekly_wednesday', 'continuous', 'on_event', 'monthly_first_friday', etc."
+              },
+              "publish_time_et": {"type": "string"},
+              "format": {"enum": ["json", "csv", "html_scrape", "api_sdk"]},
+              "field_path": {"type": "string"},
+              "historical_archive_url": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "resolution": {
+      "type": "object",
+      "required": ["rule_quote_verbatim", "direction", "resolution_timestamp"],
+      "properties": {
+        "rule_quote_verbatim": {
+          "type": "string",
+          "description": "Exact text from Kalshi market description. Forces auditability."
+        },
+        "rule_quote_source": {"type": "string"},
+        "threshold_per_strike": {
+          "type": "string",
+          "description": "How to extract the threshold from each market ticker. Usually 'parsed from market ticker last segment after T'."
+        },
+        "direction": {"enum": ["above", "below", "between", "exact", "binary"]},
+        "resolution_timestamp": {"type": "string", "format": "date-time"}
+      }
+    },
+    "blackout_calendar": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["start", "end", "reason"],
+        "properties": {
+          "start": {"type": "string", "format": "date-time"},
+          "end": {"type": "string", "format": "date-time"},
+          "reason": {"type": "string"}
+        }
+      }
+    },
+    "blackout_rules": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Human-readable rules the pipeline should encode. E.g. 'T-15min to T+30min around Truflation publish'."
+    },
+    "vol_estimation_hints": {
+      "type": "object",
+      "properties": {
+        "lookback_days": {"type": "integer"},
+        "exclude_blackout_days": {"type": "boolean"},
+        "method_suggestion": {"type": "string"},
+        "known_seasonality": {"type": "string"}
+      }
+    },
+    "model_family_suggestion": {
+      "enum": ["normal_in_underlying_space", "lognormal", "devigged_book", "futures_implied", "binary_with_prior", "custom"]
+    },
+    "researched_at": {"type": "string", "format": "date-time"},
+    "researcher_notes": {"type": "string"},
+    "concerns_considered": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["concern", "verdict"],
+        "properties": {
+          "concern": {"type": "string"},
+          "verdict": {"enum": ["ok", "watch", "blocking"]},
+          "data": {"type": "string"}
+        }
+      }
+    }
+  }
+}

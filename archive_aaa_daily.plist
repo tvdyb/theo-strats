@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  launchd plist: daily AAA archiver.
+
+  Runs once per day at 14:30 UTC = 10:30 ET, after AAA's typical
+  06:00-10:00 ET refresh window.
+
+  StartCalendarInterval below is in LOCAL time. macOS launchd does not
+  support a UTC flag, so the Hour value must be adjusted to your local
+  timezone. The defaults below assume America/New_York (EDT = UTC-4 -> 10:30,
+  EST = UTC-5 -> 09:30). Pick whichever matches your machine's current TZ;
+  re-edit on DST flips, OR just run via cron (which can also be local-only
+  on macOS but is simpler to reason about).
+
+  Install:
+      cp /Users/wilsonw/mm-setup/auto_theo/archive_aaa_daily.plist \
+         ~/Library/LaunchAgents/com.wilsonw.archive-aaa-daily.plist
+      launchctl load ~/Library/LaunchAgents/com.wilsonw.archive-aaa-daily.plist
+
+  Unload:
+      launchctl unload ~/Library/LaunchAgents/com.wilsonw.archive-aaa-daily.plist
+
+  Verify it's scheduled:
+      launchctl list | grep archive-aaa-daily
+
+  Force-run for testing:
+      launchctl start com.wilsonw.archive-aaa-daily
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.wilsonw.archive-aaa-daily</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/env</string>
+        <string>python3</string>
+        <string>/Users/wilsonw/mm-setup/auto_theo/archive_aaa_daily.py</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/wilsonw/mm-setup</string>
+
+    <!-- Local-time fire. EDT (UTC-4) -> 10:30 local = 14:30 UTC. -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>10</integer>
+        <key>Minute</key>
+        <integer>30</integer>
+    </dict>
+
+    <!-- If the laptop was asleep at fire time, run as soon as it wakes. -->
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/wilsonw/mm-setup/auto_theo/archive_aaa_daily.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/wilsonw/mm-setup/auto_theo/archive_aaa_daily.log</string>
+
+    <!-- Keep PATH sane in case /usr/bin/env python3 needs system paths. -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+</dict>
+</plist>

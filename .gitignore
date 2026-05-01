@@ -1,0 +1,9 @@
+archive/
+pnl/
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+backtest/reports/*/walk_samples*
+backtest/reports/*/worst_50.json
+research/scripts/__pycache__/

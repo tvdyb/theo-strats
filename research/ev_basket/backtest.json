@@ -1,0 +1,558 @@
+{
+  "n_events": 10,
+  "events": [
+    {
+      "event": "KXTRUEV-26APR15",
+      "close_time": "2026-04-15T23:59:00Z",
+      "realized_truEV_low": 1208.41,
+      "realized_truEV_high": 1228.41,
+      "realized_truEV_mid": 1218.41,
+      "close_minus_1h": {
+        "as_of_components": "2026-04-15",
+        "cu_lb": 6.072000026702881,
+        "pd_oz": 1578.0999755859375,
+        "pt_oz": 2112.89990234375,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.768894049983,
+        "abs_error_vs_realized_mid": 4.358894049982837
+      },
+      "close_minus_1d": {
+        "as_of_components": "2026-04-14",
+        "cu_lb": 6.070499897003174,
+        "pd_oz": 1579.4000244140625,
+        "pt_oz": 2084.60009765625,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1221.0824213260987,
+        "abs_error_vs_realized_mid": 2.672421326098629
+      },
+      "close_minus_3d": {
+        "as_of_components": "2026-04-10",
+        "cu_lb": 5.870500087738037,
+        "pd_oz": 1528.0999755859375,
+        "pt_oz": 2049.10009765625,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1220.0881310984716,
+        "abs_error_vs_realized_mid": 1.6781310984715674
+      },
+      "close_minus_7d": {
+        "as_of_components": "2026-04-08",
+        "cu_lb": 5.759500026702881,
+        "pd_oz": 1586.9000244140625,
+        "pt_oz": 2050.60009765625,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1207.5928737714562,
+        "abs_error_vs_realized_mid": 10.817126228543884
+      },
+      "kalshi": {
+        "available": false,
+        "note": "no candle files for this event"
+      }
+    },
+    {
+      "event": "KXTRUEV-26APR19",
+      "close_time": "2026-04-19T23:59:00Z",
+      "realized_truEV_low": 1224.6,
+      "realized_truEV_high": 1234.6,
+      "realized_truEV_mid": 1229.6,
+      "close_minus_1h": {
+        "as_of_components": "2026-04-17",
+        "cu_lb": 6.103499889373779,
+        "pd_oz": 1590.4000244140625,
+        "pt_oz": 2124.5,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.6017136866717,
+        "abs_error_vs_realized_mid": 6.998286313328208
+      },
+      "close_minus_1d": {
+        "as_of_components": "2026-04-16",
+        "cu_lb": 6.066500186920166,
+        "pd_oz": 1570.5,
+        "pt_oz": 2094.10009765625,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.7574903151299,
+        "abs_error_vs_realized_mid": 6.842509684870038
+      },
+      "close_minus_3d": {
+        "as_of_components": "2026-04-14",
+        "cu_lb": 6.070499897003174,
+        "pd_oz": 1579.4000244140625,
+        "pt_oz": 2084.60009765625,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1221.0824213260987,
+        "abs_error_vs_realized_mid": 8.517578673901198
+      },
+      "close_minus_7d": {
+        "as_of_components": "2026-04-12",
+        "cu_lb": 5.870500087738037,
+        "pd_oz": 1528.0999755859375,
+        "pt_oz": 2049.10009765625,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1220.0881310984716,
+        "abs_error_vs_realized_mid": 9.51186890152826
+      },
+      "kalshi": {
+        "available": false,
+        "note": "no candle files for this event"
+      }
+    },
+    {
+      "event": "KXTRUEV-26APR20",
+      "close_time": "2026-04-20T23:59:00Z",
+      "realized_truEV_low": 1208.23,
+      "realized_truEV_high": 1218.23,
+      "realized_truEV_mid": 1213.23,
+      "close_minus_1h": {
+        "as_of_components": "2026-04-20",
+        "cu_lb": 6.035999774932861,
+        "pd_oz": 1559.5999755859375,
+        "pt_oz": 2070.699951171875,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.1490291448813,
+        "abs_error_vs_realized_mid": 8.919029144881279
+      },
+      "close_minus_1d": {
+        "as_of_components": "2026-04-17",
+        "cu_lb": 6.103499889373779,
+        "pd_oz": 1590.4000244140625,
+        "pt_oz": 2124.5,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.6017136866717,
+        "abs_error_vs_realized_mid": 9.371713686671683
+      },
+      "close_minus_3d": {
+        "as_of_components": "2026-04-15",
+        "cu_lb": 6.072000026702881,
+        "pd_oz": 1578.0999755859375,
+        "pt_oz": 2112.89990234375,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.768894049983,
+        "abs_error_vs_realized_mid": 9.5388940499829
+      },
+      "close_minus_7d": {
+        "as_of_components": "2026-04-13",
+        "cu_lb": 5.97599983215332,
+        "pd_oz": 1569.800048828125,
+        "pt_oz": 2061.800048828125,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1218.1211702761846,
+        "abs_error_vs_realized_mid": 4.891170276184539
+      },
+      "kalshi": {
+        "available": false,
+        "note": "no candle files for this event"
+      }
+    },
+    {
+      "event": "KXTRUEV-26APR21",
+      "close_time": "2026-04-21T23:59:00Z",
+      "realized_truEV_low": 1230.4,
+      "realized_truEV_high": 1240.4,
+      "realized_truEV_mid": 1235.4,
+      "close_minus_1h": {
+        "as_of_components": "2026-04-21",
+        "cu_lb": 6.001500129699707,
+        "pd_oz": 1531.699951171875,
+        "pt_oz": 2024.300048828125,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.7693412724088,
+        "abs_error_vs_realized_mid": 12.630658727591253
+      },
+      "close_minus_1d": {
+        "as_of_components": "2026-04-20",
+        "cu_lb": 6.035999774932861,
+        "pd_oz": 1559.5999755859375,
+        "pt_oz": 2070.699951171875,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.1490291448813,
+        "abs_error_vs_realized_mid": 13.250970855118794
+      },
+      "close_minus_3d": {
+        "as_of_components": "2026-04-16",
+        "cu_lb": 6.066500186920166,
+        "pd_oz": 1570.5,
+        "pt_oz": 2094.10009765625,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.7574903151299,
+        "abs_error_vs_realized_mid": 12.64250968487022
+      },
+      "close_minus_7d": {
+        "as_of_components": "2026-04-14",
+        "cu_lb": 6.070499897003174,
+        "pd_oz": 1579.4000244140625,
+        "pt_oz": 2084.60009765625,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1221.0824213260987,
+        "abs_error_vs_realized_mid": 14.31757867390138
+      },
+      "kalshi": {
+        "available": false,
+        "note": "no candle files for this event"
+      }
+    },
+    {
+      "event": "KXTRUEV-26APR22",
+      "close_time": "2026-04-22T23:59:00Z",
+      "realized_truEV_low": 1214.97,
+      "realized_truEV_high": 1224.97,
+      "realized_truEV_mid": 1219.97,
+      "close_minus_1h": {
+        "as_of_components": "2026-04-22",
+        "cu_lb": 6.119999885559082,
+        "pd_oz": 1547.0999755859375,
+        "pt_oz": 2072.60009765625,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1226.9846525577145,
+        "abs_error_vs_realized_mid": 7.0146525577144985
+      },
+      "close_minus_1d": {
+        "as_of_components": "2026-04-21",
+        "cu_lb": 6.001500129699707,
+        "pd_oz": 1531.699951171875,
+        "pt_oz": 2024.300048828125,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.7693412724088,
+        "abs_error_vs_realized_mid": 2.7993412724088103
+      },
+      "close_minus_3d": {
+        "as_of_components": "2026-04-17",
+        "cu_lb": 6.103499889373779,
+        "pd_oz": 1590.4000244140625,
+        "pt_oz": 2124.5,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.6017136866717,
+        "abs_error_vs_realized_mid": 2.6317136866716737
+      },
+      "close_minus_7d": {
+        "as_of_components": "2026-04-15",
+        "cu_lb": 6.072000026702881,
+        "pd_oz": 1578.0999755859375,
+        "pt_oz": 2112.89990234375,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.768894049983,
+        "abs_error_vs_realized_mid": 2.7988940499828914
+      },
+      "kalshi": {
+        "available": false,
+        "note": "no candle files for this event"
+      }
+    },
+    {
+      "event": "KXTRUEV-26APR23",
+      "close_time": "2026-04-23T23:59:00Z",
+      "realized_truEV_low": 1227.39,
+      "realized_truEV_high": 1237.39,
+      "realized_truEV_mid": 1232.39,
+      "close_minus_1h": {
+        "as_of_components": "2026-04-23",
+        "cu_lb": 6.075500011444092,
+        "pd_oz": 1484.5999755859375,
+        "pt_oz": 2022.5999755859375,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1232.2427297537624,
+        "abs_error_vs_realized_mid": 0.14727024623766738
+      },
+      "close_minus_1d": {
+        "as_of_components": "2026-04-22",
+        "cu_lb": 6.119999885559082,
+        "pd_oz": 1547.0999755859375,
+        "pt_oz": 2072.60009765625,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1226.9846525577145,
+        "abs_error_vs_realized_mid": 5.405347442285574
+      },
+      "close_minus_3d": {
+        "as_of_components": "2026-04-20",
+        "cu_lb": 6.035999774932861,
+        "pd_oz": 1559.5999755859375,
+        "pt_oz": 2070.699951171875,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.1490291448813,
+        "abs_error_vs_realized_mid": 10.240970855118803
+      },
+      "close_minus_7d": {
+        "as_of_components": "2026-04-16",
+        "cu_lb": 6.066500186920166,
+        "pd_oz": 1570.5,
+        "pt_oz": 2094.10009765625,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.7574903151299,
+        "abs_error_vs_realized_mid": 9.632509684870229
+      },
+      "kalshi": {
+        "available": true,
+        "strikes_with_candles": [
+          1237.39
+        ],
+        "raw_bbo_last3": {
+          "1237.39": [
+            {
+              "ts": 1776942000,
+              "yb": "0.0100",
+              "ya": "0.9900"
+            },
+            {
+              "ts": 1776945600,
+              "yb": "0.0100",
+              "ya": "0.9900"
+            },
+            {
+              "ts": 1776949200,
+              "yb": "0.0000",
+              "ya": "1.0000"
+            }
+          ]
+        },
+        "close_minus_1h": {
+          "target_ts": 1776985140,
+          "kalshi_implied_truEV": null,
+          "n_strikes": 1
+        },
+        "close_minus_1d": {
+          "target_ts": 1776902340,
+          "kalshi_implied_truEV": null,
+          "n_strikes": 0
+        },
+        "close_minus_3d": {
+          "target_ts": 1776729540,
+          "kalshi_implied_truEV": null,
+          "n_strikes": 0
+        },
+        "close_minus_7d": {
+          "target_ts": 1776383940,
+          "kalshi_implied_truEV": null,
+          "n_strikes": 0
+        }
+      }
+    },
+    {
+      "event": "KXTRUEV-26APR24",
+      "close_time": "2026-04-24T23:59:00Z",
+      "realized_truEV_low": 1226.08,
+      "realized_truEV_high": 1236.08,
+      "realized_truEV_mid": 1231.08,
+      "close_minus_1h": {
+        "as_of_components": "2026-04-24",
+        "cu_lb": 6.023499965667725,
+        "pd_oz": 1501.5,
+        "pt_oz": 2015.0,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1227.554931817088,
+        "abs_error_vs_realized_mid": 3.5250681829120367
+      },
+      "close_minus_1d": {
+        "as_of_components": "2026-04-23",
+        "cu_lb": 6.075500011444092,
+        "pd_oz": 1484.5999755859375,
+        "pt_oz": 2022.5999755859375,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1232.2427297537624,
+        "abs_error_vs_realized_mid": 1.1627297537625054
+      },
+      "close_minus_3d": {
+        "as_of_components": "2026-04-21",
+        "cu_lb": 6.001500129699707,
+        "pd_oz": 1531.699951171875,
+        "pt_oz": 2024.300048828125,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.7693412724088,
+        "abs_error_vs_realized_mid": 8.31065872759109
+      },
+      "close_minus_7d": {
+        "as_of_components": "2026-04-17",
+        "cu_lb": 6.103499889373779,
+        "pd_oz": 1590.4000244140625,
+        "pt_oz": 2124.5,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.6017136866717,
+        "abs_error_vs_realized_mid": 8.478286313328226
+      },
+      "kalshi": {
+        "available": true,
+        "strikes_with_candles": [
+          1226.08
+        ],
+        "raw_bbo_last3": {
+          "1226.08": [
+            {
+              "ts": 1777028400,
+              "yb": "0.0100",
+              "ya": "0.9900"
+            },
+            {
+              "ts": 1777032000,
+              "yb": "0.0100",
+              "ya": "0.9900"
+            },
+            {
+              "ts": 1777035600,
+              "yb": "0.0000",
+              "ya": "1.0000"
+            }
+          ]
+        },
+        "close_minus_1h": {
+          "target_ts": 1777071540,
+          "kalshi_implied_truEV": null,
+          "n_strikes": 1
+        },
+        "close_minus_1d": {
+          "target_ts": 1776988740,
+          "kalshi_implied_truEV": null,
+          "n_strikes": 0
+        },
+        "close_minus_3d": {
+          "target_ts": 1776815940,
+          "kalshi_implied_truEV": null,
+          "n_strikes": 0
+        },
+        "close_minus_7d": {
+          "target_ts": 1776470340,
+          "kalshi_implied_truEV": null,
+          "n_strikes": 0
+        }
+      }
+    },
+    {
+      "event": "KXTRUEV-26APR27",
+      "close_time": "2026-04-27T23:59:00Z",
+      "realized_truEV_low": 1227.24,
+      "realized_truEV_high": 1237.24,
+      "realized_truEV_mid": 1232.24,
+      "close_minus_1h": {
+        "as_of_components": "2026-04-27",
+        "cu_lb": 6.01800012588501,
+        "pd_oz": 1477.699951171875,
+        "pt_oz": 1981.0999755859375,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1229.192020982201,
+        "abs_error_vs_realized_mid": 3.04797901779898
+      },
+      "close_minus_1d": {
+        "as_of_components": "2026-04-24",
+        "cu_lb": 6.023499965667725,
+        "pd_oz": 1501.5,
+        "pt_oz": 2015.0,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1227.554931817088,
+        "abs_error_vs_realized_mid": 4.685068182912119
+      },
+      "close_minus_3d": {
+        "as_of_components": "2026-04-22",
+        "cu_lb": 6.119999885559082,
+        "pd_oz": 1547.0999755859375,
+        "pt_oz": 2072.60009765625,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1226.9846525577145,
+        "abs_error_vs_realized_mid": 5.255347442285483
+      },
+      "close_minus_7d": {
+        "as_of_components": "2026-04-20",
+        "cu_lb": 6.035999774932861,
+        "pd_oz": 1559.5999755859375,
+        "pt_oz": 2070.699951171875,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.1490291448813,
+        "abs_error_vs_realized_mid": 10.090970855118712
+      },
+      "kalshi": {
+        "available": false,
+        "note": "no candle files for this event"
+      }
+    },
+    {
+      "event": "KXTRUEV-26APR28",
+      "close_time": "2026-04-28T23:59:00Z",
+      "realized_truEV_low": 1216.95,
+      "realized_truEV_high": 1226.95,
+      "realized_truEV_mid": 1221.95,
+      "close_minus_1h": {
+        "as_of_components": "2026-04-28",
+        "cu_lb": 5.9145002365112305,
+        "pd_oz": 1461.0999755859375,
+        "pt_oz": 1942.300048828125,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1226.1526893533091,
+        "abs_error_vs_realized_mid": 4.202689353309097
+      },
+      "close_minus_1d": {
+        "as_of_components": "2026-04-27",
+        "cu_lb": 6.01800012588501,
+        "pd_oz": 1477.699951171875,
+        "pt_oz": 1981.0999755859375,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1229.192020982201,
+        "abs_error_vs_realized_mid": 7.242020982200984
+      },
+      "close_minus_3d": {
+        "as_of_components": "2026-04-23",
+        "cu_lb": 6.075500011444092,
+        "pd_oz": 1484.5999755859375,
+        "pt_oz": 2022.5999755859375,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1232.2427297537624,
+        "abs_error_vs_realized_mid": 10.292729753762387
+      },
+      "close_minus_7d": {
+        "as_of_components": "2026-04-21",
+        "cu_lb": 6.001500129699707,
+        "pd_oz": 1531.699951171875,
+        "pt_oz": 2024.300048828125,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1222.7693412724088,
+        "abs_error_vs_realized_mid": 0.8193412724087921
+      },
+      "kalshi": {
+        "available": false,
+        "note": "no candle files for this event"
+      }
+    },
+    {
+      "event": "KXTRUEV-26APR29",
+      "close_time": "2026-04-29T23:59:00Z",
+      "realized_truEV_low": 1215.06,
+      "realized_truEV_high": 1225.06,
+      "realized_truEV_mid": 1220.06,
+      "close_minus_1h": {
+        "as_of_components": "2026-04-29",
+        "cu_lb": 5.878499984741211,
+        "pd_oz": 1461.800048828125,
+        "pt_oz": 1885.300048828125,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1221.9139973818476,
+        "abs_error_vs_realized_mid": 1.8539973818476483
+      },
+      "close_minus_1d": {
+        "as_of_components": "2026-04-28",
+        "cu_lb": 5.9145002365112305,
+        "pd_oz": 1461.0999755859375,
+        "pt_oz": 1942.300048828125,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1226.1526893533091,
+        "abs_error_vs_realized_mid": 6.092689353309197
+      },
+      "close_minus_3d": {
+        "as_of_components": "2026-04-24",
+        "cu_lb": 6.023499965667725,
+        "pd_oz": 1501.5,
+        "pt_oz": 2015.0,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1227.554931817088,
+        "abs_error_vs_realized_mid": 7.494931817087945
+      },
+      "close_minus_7d": {
+        "as_of_components": "2026-04-22",
+        "cu_lb": 6.119999885559082,
+        "pd_oz": 1547.0999755859375,
+        "pt_oz": 2072.60009765625,
+        "ni_mt": 17076.29,
+        "basket_implied_truEV": 1226.9846525577145,
+        "abs_error_vs_realized_mid": 6.92465255771458
+      },
+      "kalshi": {
+        "available": false,
+        "note": "no candle files for this event"
+      }
+    }
+  ],
+  "basket_kalshi_divergences": []
+}

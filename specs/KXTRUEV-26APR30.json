@@ -1,0 +1,106 @@
+{
+  "event_ticker": "KXTRUEV-26APR30",
+  "family_signature": "truflation:ev:daily_threshold",
+  "tradability": "untradable_no_source",
+  "tradability_reason": "The underlying is the Truflation EV Commodity Index, a proprietary index published only by Truflation. Kalshi's series metadata names exactly one settlement_source URL (https://truflation.com/marketplace/ev-index); that page does not display the index value to anonymous visitors and Truflation's API requires a paid subscription. A 4-component proxy basket (Cu/Pd/Pt/Ni-monthly; cobalt unavailable in any free public source) was fitted to inferred TruEV midpoints from ALL 13 settled KXTRUEV events (Apr 15-29 2026, the entire universe of settled events in this series) and FAILED the acceptance criteria: R²=0.335 (need >=0.85), residual_stdev=5.94 idx pts (need <5.0, i.e. <50% of $10 strike spacing); LOO classification hit rate at boundary strikes 20/26=76.9% (passes the 70% threshold but with binomial SE ~10% the 95% CI is approximately (57%, 96%) so this is not a robust pass on its own). Top LOO errors of $10-16 occur when TruEV moves in the OPPOSITE direction to the metals: Apr 19 actual=1229.6 predicted=1217.5 (TruEV +13 vs basket prediction near-flat); Apr 21 actual=1235.4 predicted=1219.3 (TruEV +22 vs Cu/Pd/Pt all falling); Apr 28-29 TruEV stays elevated while the metals all decline. The fitted Pd coefficient is structurally negative (-0.178 linear, -0.224 log) — sign-flipped from the EV-component prior. Daily-return correlations corr(ry, rPd)=-0.65, corr(ry, rPt)=-0.59, corr(ry, rCu)=-0.34 confirm this is structural, not sample-size: the published index moves in the opposite direction to spot metals more often than not. Additionally: candlesticks across the entire KXTRUEV series show a 1¢/99¢ stub-MM book at every observed timestamp, so no Kalshi-implied-price calibration is possible (zero informative midprices); even a passing proxy would face thin liquidity to harvest rewards on. Conclusion: the published index has battery-cost-model and EV-mix overlay components that are not recoverable from public commodity prices alone, AND the live KXTRUEV order books offer no informative price signal to anchor a proxy against. Spec stays untradable until the user supplies a Truflation API key or another structured public source for the index time series. Full diagnostics: auto_theo/research/ev_basket/{weights.json, loo_classification.json, kalshi_history.json}.",
+  "underlying": {
+    "name": "Truflation Electric Vehicle Commodity Index (TruEV)",
+    "unit": "index_points (USD-denominated, base Jan 1 2018)",
+    "data_sources": [
+      {
+        "purpose": "primary",
+        "url": "https://truflation.com/marketplace/ev-index",
+        "method": "GET",
+        "auth": "none",
+        "publish_frequency": "daily",
+        "publish_time_et": "unknown_observed_intra_day",
+        "format": "html_scrape",
+        "field_path": "current chart latest-point value (DOM); not exposed to anonymous visitors as of 2026-04-30",
+        "historical_archive_url": "https://truflation.com/marketplace/ev-index"
+      },
+      {
+        "purpose": "primary",
+        "url": "https://api.truflation.com/",
+        "method": "GET",
+        "auth": "api_key",
+        "publish_frequency": "daily",
+        "format": "json",
+        "field_path": "unknown — requires a paid Single API key for the EV index per https://help.truflation.com/technical-resources/.../how-do-i-access-the-truflation-api/",
+        "historical_archive_url": "https://api.truflation.com/"
+      },
+      {
+        "purpose": "cross_check",
+        "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXTRUEV",
+        "method": "GET",
+        "auth": "none",
+        "publish_frequency": "on_event",
+        "format": "json",
+        "field_path": "settlement_sources[0].url == 'https://truflation.com/marketplace/ev-index' (Kalshi self-declares Truflation as the sole settlement source; useful as evidence of single-point-of-failure)"
+      }
+    ]
+  },
+  "resolution": {
+    "rule_quote_verbatim": "If the Truflation EV Commodity Index on Apr 30, 2026 is above 1205.42, then the market resolves to Yes.",
+    "rule_quote_source": "https://api.elections.kalshi.com/trade-api/v2/markets/KXTRUEV-26APR30-T1205.42 (rules_primary field, fetched 2026-04-30T18:45Z); per-strike threshold pattern is identical, only the numeric strike differs.",
+    "threshold_per_strike": "Parsed from market ticker last segment after 'T'. Pattern: KXTRUEV-26APR30-T<strike> where <strike> is a decimal index value (e.g. T1205.42 -> threshold = 1205.42). Strike type per Kalshi market metadata is 'greater'.",
+    "direction": "above",
+    "resolution_timestamp": "2026-04-30T23:59:00Z"
+  },
+  "blackout_calendar": [],
+  "blackout_rules": [
+    "If/when this becomes tradable (with an API key), apply T-15min to T+30min around the daily Truflation EV index publish to avoid being adversely selected on the publish tick.",
+    "Final 30 minutes before market close (23:29Z to 23:59Z on resolution date): tighten quoting or stop quoting — early-close clause says the market closes when 'the economic data is released'.",
+    "Do not quote in the last full hour before any expected Truflation publish window if the as-of value would be stale by more than the strike spacing in implied terms."
+  ],
+  "vol_estimation_hints": {
+    "lookback_days": 30,
+    "exclude_blackout_days": false,
+    "method_suggestion": "Once a data source is available, compute daily log-returns of the index, convert to absolute index-point steps (sigma_idx = sigma_log * level), and compare to the $10 strike spacing. Use a normal-in-underlying-space model truncated at 0; log-returns are reasonable for a commodity-basket composite. With time-to-resolution << 1 day at quote time, scale by sqrt(t_remaining_in_day / 1day).",
+    "known_seasonality": "Composite of cobalt/copper/nickel/palladium/platinum with quarterly weight recalibration tied to EV production mix. Expect (a) discrete jumps on quarterly rebalances, (b) sensitivity to LME/CME metals close, (c) battery-cost-model methodology updates as a model-risk seasonality (cf. Truflation 2026 EV Index methodology refresh)."
+  },
+  "model_family_suggestion": "normal_in_underlying_space",
+  "researched_at": "2026-04-30T18:46:10Z",
+  "researcher_notes": "Event metadata: title 'EV commodity prices on Apr 30, 2026', 15 markets at strikes 1155.42 -> 1295.42 in $10 increments; close 2026-04-30T23:59:00Z, expiration 2026-05-08T03:59:00Z, can_close_early=true with rule 'This market will close and expire early if the economic data is released.' settlement_timer_seconds=1800. Series metadata (api/v2/series/KXTRUEV) names exactly one settlement_source: {name: 'Truflation', url: 'https://truflation.com/marketplace/ev-index'}. That URL renders for anonymous visitors but does NOT display any current value, chart numbers, or historical points without login (verified 2026-04-30); Truflation explicitly markets API access as paid (single-index or enterprise). No public Chainlink data feed was found for the EV composite (only the legacy CPI/inflation feeds). No public mirror or aggregator was found (octagonai.co references the index but does not publish values). USER OVERRIDE PATH: if the user already holds a Truflation Single API key for the EV Index, classify this as 'tradable' and re-spec with the actual API endpoint + field path; family stays truflation:ev:daily_threshold. Even with data, the strike spacing is tight ($10 on a ~$1200 level = ~0.83%), so vol-vs-spacing must be checked numerically before going live; this is the Modeler's job, not refusal-grade for the Researcher. Time-to-resolution at write-time is ~5h, which is fine for a daily-published underlying once data is in hand.",
+  "concerns_considered": [
+    {
+      "concern": "Strike spacing vs underlying vol — 15 strikes spaced $10 around a level near $1200 (~0.83% per strike). A commodity-basket composite (Co/Cu/Ni/Pd/Pt) can easily move >0.83% in a day on metals shocks, potentially triggering the untradable_too_volatile rule (60d_stdev/spacing > 2.0). Without access to the index time series we cannot evaluate this numerically.",
+      "verdict": "watch",
+      "data": "Daily index publication; strike step = $10; eyeballed vol from underlying metals (LME daily moves of 1-3% on copper/nickel are routine) suggests sigma_in_strike_units could be ~1-2x spacing, near the refusal threshold. The Modeler MUST compute this from the actual time series before any pipeline ships."
+    },
+    {
+      "concern": "Single-point-of-failure on data source — Kalshi's series metadata names Truflation as the sole settlement source, and Truflation is also the sole publisher of the underlying. There is no independent cross-check; Truflation downtime, methodology change (e.g. the 2026 battery-cost-model refresh), or rate-limiting would simultaneously break both data ingestion and dispute leverage.",
+      "verdict": "blocking",
+      "data": "settlement_sources from /v2/series/KXTRUEV: [{name: 'Truflation', url: 'https://truflation.com/marketplace/ev-index'}]. ECONSTAT contract terms say revisions after Expiration are not accounted for, but otherwise allow Kalshi to invoke Market Outcome Review under Rule 6.3(d) if a value cannot be determined; that is exchange-side discretion, not a hedge for our pipeline."
+    },
+    {
+      "concern": "Time-to-resolution vs publish frequency — daily underlying, market closes 23:59Z today (~5h from now). Within-day re-quotes against a once-per-day publish are fine in principle, but if today's value has not yet been published at quote time, we are quoting against yesterday's value with full intraday metals drift unhedged.",
+      "verdict": "watch",
+      "data": "Today's date 2026-04-30; close 2026-04-30T23:59:00Z. ECONSTAT terms set Last Trading Time = 1 minute prior to expected release; Kalshi's early_close_condition triggers on release. Need the publish_time_et hint populated before this can be a real pipeline."
+    },
+    {
+      "concern": "Refusal-as-feature: data source paywalled — primary URL is login/paid-only. Per the Researcher contract, lack of a structured, accessible public source is a hard refusal trigger.",
+      "verdict": "blocking",
+      "data": "https://truflation.com/marketplace/ev-index renders no values for anonymous visitors (verified 2026-04-30 via WebFetch — page shows 'Get API access' CTA, no chart values). https://api.truflation.com/ requires a paid Single API or Enterprise key per the Truflation help center. No free third-party mirror identified."
+    },
+    {
+      "concern": "Methodology drift — Truflation announced an EV Index battery-cost-model upgrade; even within a single year the index level definition can shift, breaking historical vol estimation.",
+      "verdict": "watch",
+      "data": "Truflation product update ('Product Update: Truflation EV Index Enhancements') describes vehicle-type differentiation, material intensity per vehicle, and battery cost model upgrades. Quarterly weight recalibration is documented. Backtests must check for level-discontinuities at known methodology dates and either exclude or splice."
+    },
+    {
+      "concern": "Component-basket proxy considered and rejected — fit explanatory power below the required level.",
+      "verdict": "blocking",
+      "data": "Tested a 4-component OLS proxy with Yahoo HG=F (copper USD/lb), PA=F (palladium USD/oz), PL=F (platinum USD/oz), and World Bank Pink Sheet monthly nickel (USD/MT). Cobalt unavailable in any free public source (Yahoo no symbol, IndexMundi missing cobalt page, FRED unreachable from this network, LME paywalled). Inferred TruEV midpoints from 10 settled KXTRUEV-26APR{15,19,20-24,27-29} events (each event has 15 strikes spaced $10; resolutions bracket realized to a $10 window). With-intercept linear fit: R²=0.221, residual_stdev=6.32 idx pts (63% of strike spacing), Pd coefficient negative (sign-flipped). Log-prices fit nearly identical (R²=0.223). Acceptance criteria require R²>=0.85 and residual_stdev<5.0; both fail. Boundary-strike LOO classification 14/20 = 70.0% (chance 50%, threshold 70%). Daily TruEV pct returns correlate -0.65 with Pd, -0.59 with Pt, -0.34 with Cu over the 10-day window — opposite sign from the prior, indicating the index has overlay components (battery-cost-model, EV production mix) not recoverable from spot metals alone. Full numerics in auto_theo/research/ev_basket/weights.json."
+    },
+    {
+      "concern": "Free-source coverage gap on cobalt — no public daily or monthly free feed identified.",
+      "verdict": "watch",
+      "data": "Searched Yahoo Finance v8 chart (JJN delisted, no COBALT or CO=F symbol), Stooq (anti-scraping returns empty payload), FRED PCOBAUSDM (network timeout to fred.stlouisfed.org from this host on every retry; FRED API requires a paid key), IndexMundi (cobalt page exists but contains no data table), LME (Cloudflare 403 challenge). World Bank Commodity Markets Outlook Pink Sheet is freely downloadable but does NOT include cobalt or palladium. Future research path: FastMarkets cobalt benchmark (subscription), Shanghai Metals Market (subscription), or scraping Trading Economics consensus pages."
+    },
+    {
+      "concern": "Kalshi /markets endpoint heavy rate-limiting on the public API — backfilling Kalshi history is slow.",
+      "verdict": "informational",
+      "data": "Even with single-request-per-30s pacing and a Mozilla User-Agent, /trade-api/v2/markets?event_ticker=KXTRUEV-* persistently returns HTTP 429 with no Retry-After header for blocks of 60-120s at a time. Pulling 13 settled events through the unauthenticated public endpoint required ~45 minutes of wall time and 3 events (Apr 16/17/18) were not retrievable in the budget. This does not affect live theo construction (those would use authenticated endpoints) but constrains how aggressively a Researcher subagent can backfill KXTRUEV history."
+    }
+  ]
+}

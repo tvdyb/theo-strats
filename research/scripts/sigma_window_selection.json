@@ -1,0 +1,101 @@
+{
+  "events_total": 36,
+  "events_in_sample": 29,
+  "events_held_out": 7,
+  "in_sample_event_list": [
+    "KXAAAGASD-26MAR26",
+    "KXAAAGASD-26MAR27",
+    "KXAAAGASD-26MAR28",
+    "KXAAAGASD-26MAR29",
+    "KXAAAGASD-26MAR30",
+    "KXAAAGASD-26MAR31",
+    "KXAAAGASD-26APR01",
+    "KXAAAGASD-26APR02",
+    "KXAAAGASD-26APR03",
+    "KXAAAGASD-26APR04",
+    "KXAAAGASD-26APR05",
+    "KXAAAGASD-26APR06",
+    "KXAAAGASD-26APR07",
+    "KXAAAGASD-26APR08",
+    "KXAAAGASD-26APR09",
+    "KXAAAGASD-26APR10",
+    "KXAAAGASD-26APR11",
+    "KXAAAGASD-26APR12",
+    "KXAAAGASD-26APR13",
+    "KXAAAGASD-26APR14",
+    "KXAAAGASD-26APR15",
+    "KXAAAGASD-26APR16",
+    "KXAAAGASD-26APR17",
+    "KXAAAGASD-26APR18",
+    "KXAAAGASD-26APR19",
+    "KXAAAGASD-26APR20",
+    "KXAAAGASD-26APR21",
+    "KXAAAGASD-26APR22",
+    "KXAAAGASD-26APR23"
+  ],
+  "held_out_event_list": [
+    "KXAAAGASD-26APR24",
+    "KXAAAGASD-26APR25",
+    "KXAAAGASD-26APR26",
+    "KXAAAGASD-26APR27",
+    "KXAAAGASD-26APR28",
+    "KXAAAGASD-26APR29",
+    "KXAAAGASD-26APR30"
+  ],
+  "candidate_windows_weeks": [
+    4,
+    8,
+    12,
+    16
+  ],
+  "rows": [
+    {
+      "window_weeks": 4,
+      "in_sample_max_decile_deviation": 0.376511,
+      "held_out_max_decile_deviation": 0.516695,
+      "in_sample_mae": 0.337919,
+      "held_out_mae": 0.293254,
+      "n_in_sample_obs": 1699,
+      "n_held_out_obs": 581,
+      "elapsed_s": 42.03
+    },
+    {
+      "window_weeks": 8,
+      "in_sample_max_decile_deviation": 0.286683,
+      "held_out_max_decile_deviation": 0.443235,
+      "in_sample_mae": 0.363252,
+      "held_out_mae": 0.350859,
+      "n_in_sample_obs": 1699,
+      "n_held_out_obs": 581,
+      "elapsed_s": 41.99
+    },
+    {
+      "window_weeks": 12,
+      "in_sample_max_decile_deviation": 0.311621,
+      "held_out_max_decile_deviation": 0.44429,
+      "in_sample_mae": 0.352179,
+      "held_out_mae": 0.339623,
+      "n_in_sample_obs": 1699,
+      "n_held_out_obs": 581,
+      "elapsed_s": 42.22
+    },
+    {
+      "window_weeks": 16,
+      "in_sample_max_decile_deviation": 0.323259,
+      "held_out_max_decile_deviation": 0.449628,
+      "in_sample_mae": 0.349133,
+      "held_out_mae": 0.332322,
+      "n_in_sample_obs": 1699,
+      "n_held_out_obs": 581,
+      "elapsed_s": 111.35
+    }
+  ],
+  "selected_window_weeks": 8,
+  "selected_held_out_max_decile_deviation": 0.443235,
+  "selected_in_sample_max_decile_deviation": 0.286683,
+  "overfit_delta_pp": 0.156552,
+  "overfit_threshold_pp": 0.08,
+  "overfit_flag": true,
+  "selected_at": "2026-04-30T23:57:06.446563+00:00",
+  "pipeline_module": "/Users/wilsonw/mm-setup/auto_theo/staging/aaa_gas_weekly_20260430234928.py"
+}

@@ -1,0 +1,138 @@
+{
+  "n_events": 13,
+  "predictions": 26,
+  "hits": 20,
+  "hit_rate": 0.7692307692307693,
+  "per_event": [
+    {
+      "event": "KXTRUEV-26APR15",
+      "actual_mid": 1218.41,
+      "predicted": 1220.62,
+      "low": 1208.41,
+      "high": 1228.41,
+      "low_correct": true,
+      "high_correct": true,
+      "abs_error": 2.21
+    },
+    {
+      "event": "KXTRUEV-26APR16",
+      "actual_mid": 1215.91,
+      "predicted": 1220.99,
+      "low": 1205.91,
+      "high": 1225.91,
+      "low_correct": true,
+      "high_correct": true,
+      "abs_error": 5.08
+    },
+    {
+      "event": "KXTRUEV-26APR17",
+      "actual_mid": 1216.14,
+      "predicted": 1220.45,
+      "low": 1206.14,
+      "high": 1226.14,
+      "low_correct": true,
+      "high_correct": true,
+      "abs_error": 4.31
+    },
+    {
+      "event": "KXTRUEV-26APR18",
+      "actual_mid": 1218.16,
+      "predicted": 1220.01,
+      "low": 1213.16,
+      "high": 1223.16,
+      "low_correct": true,
+      "high_correct": true,
+      "abs_error": 1.85
+    },
+    {
+      "event": "KXTRUEV-26APR19",
+      "actual_mid": 1229.6,
+      "predicted": 1217.49,
+      "low": 1224.6,
+      "high": 1234.6,
+      "low_correct": false,
+      "high_correct": true,
+      "abs_error": 12.11
+    },
+    {
+      "event": "KXTRUEV-26APR20",
+      "actual_mid": 1213.23,
+      "predicted": 1221.08,
+      "low": 1208.23,
+      "high": 1218.23,
+      "low_correct": true,
+      "high_correct": false,
+      "abs_error": 7.85
+    },
+    {
+      "event": "KXTRUEV-26APR21",
+      "actual_mid": 1235.4,
+      "predicted": 1219.27,
+      "low": 1230.4,
+      "high": 1240.4,
+      "low_correct": false,
+      "high_correct": true,
+      "abs_error": 16.13
+    },
+    {
+      "event": "KXTRUEV-26APR22",
+      "actual_mid": 1219.97,
+      "predicted": 1231.48,
+      "low": 1214.97,
+      "high": 1224.97,
+      "low_correct": true,
+      "high_correct": false,
+      "abs_error": 11.51
+    },
+    {
+      "event": "KXTRUEV-26APR23",
+      "actual_mid": 1232.39,
+      "predicted": 1232.8,
+      "low": 1227.39,
+      "high": 1237.39,
+      "low_correct": true,
+      "high_correct": true,
+      "abs_error": 0.41
+    },
+    {
+      "event": "KXTRUEV-26APR24",
+      "actual_mid": 1231.08,
+      "predicted": 1226.43,
+      "low": 1226.08,
+      "high": 1236.08,
+      "low_correct": true,
+      "high_correct": true,
+      "abs_error": 4.65
+    },
+    {
+      "event": "KXTRUEV-26APR27",
+      "actual_mid": 1232.24,
+      "predicted": 1228.66,
+      "low": 1227.24,
+      "high": 1237.24,
+      "low_correct": true,
+      "high_correct": true,
+      "abs_error": 3.58
+    },
+    {
+      "event": "KXTRUEV-26APR28",
+      "actual_mid": 1221.95,
+      "predicted": 1232.54,
+      "low": 1216.95,
+      "high": 1226.95,
+      "low_correct": true,
+      "high_correct": false,
+      "abs_error": 10.59
+    },
+    {
+      "event": "KXTRUEV-26APR29",
+      "actual_mid": 1220.06,
+      "predicted": 1231.68,
+      "low": 1215.06,
+      "high": 1225.06,
+      "low_correct": true,
+      "high_correct": false,
+      "abs_error": 11.62
+    }
+  ]
+}
