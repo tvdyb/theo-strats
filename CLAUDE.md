@@ -79,6 +79,35 @@ orchestrator:
 
 Family signature is `(data_source_set, resolution_pattern, strike_pattern)`. Two events with the same signature share a pipeline. This is how you go from 100 markets to ~5 pipelines.
 
+### Family-signature short-circuit (Fix 1)
+
+If `family_signature` already has a pipeline class in `pipelines/`, the
+modeler/backtester are skipped; integrator just adds the new spec and the
+orchestrator picks it up on next refresh. The orchestrator already maps
+`family_signature -> pipeline_class` (in `discover_pipeline_classes`) and
+`event_ticker -> (pipeline_class, spec)` (in `build_event_registry`); a brand-
+new spec file dropped into `specs/` whose `family_signature` matches an
+existing pipeline class is enough to onboard the event end-to-end. Verified
+with `KXAAAGASW-26MAY04` + `KXAAAGASW-26MAY11` — both are served by
+`AAAGasWeeklyPipeline` with zero pipeline-code edits.
+
+This is how onboarding scales sublinearly: pipeline #2 through #100 in the
+same family cost one spec JSON each, not a full researcher/modeler/backtester
+/integrator round.
+
+### Synthetic-archive ship-with-trip rule (Fix 2)
+
+When a spec has `backtest.archive_quality != "real"`, the backtester
+short-circuits to `passed=True` with reason `"skipped: archive_quality=..."`.
+The leakage and refusal-sanity gates STILL run (they don't depend on
+calibration ground truth), but the calibration-decile gate is skipped because
+the archive itself is structurally biased and would always fail. To compensate,
+`backtest.trip_max_loss_usd_override` (typically `5.0`) tightens the per-
+pipeline PnL trip in `pnl/<family>.json` from the default `25.0`. Integrator
+rule: when promoting a pipeline whose spec has `trip_max_loss_usd_override`,
+write that value as `max_loss_usd` in `pnl/<family>.json` instead of the
+default $25.
+
 ## Hard rules for parallel runs
 
 - Subagents working in parallel must not write to overlapping files. Researchers write to unique `specs/<event>.json` paths; conflict is impossible. Modelers write to unique `staging/<family>_<timestamp>.py` paths. Only the Integrator writes to `pipelines/` and `theos/`, and it runs serially.
