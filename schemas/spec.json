@@ -102,6 +102,26 @@
           "data": {"type": "string"}
         }
       }
+    },
+    "backtest": {
+      "type": "object",
+      "description": "Backtester directives. Optional. Used when the historical archive does not faithfully represent the live underlying (e.g. forward-fill of a coarser-frequency real source) — in which case the calibration gate is structurally biased and would always fail. Setting archive_quality != 'real' tells the harness to skip the calibration-decile gate but still run leakage and refusal-sanity checks; ship-with-trip is enforced by trip_max_loss_usd_override (typically $5).",
+      "properties": {
+        "archive_quality": {
+          "enum": ["real", "synthetic_forward_fill", "synthetic_implied_only", "none"],
+          "default": "real",
+          "description": "Real = actual point-in-time observations of the underlying. Synthetic_forward_fill = derived from a coarser-frequency real source (e.g. weekly forward-filled to daily). Synthetic_implied_only = derived from market resolutions (e.g. Kalshi implied bounds). None = no historical archive available."
+        },
+        "skip_calibration_gate_reason": {
+          "type": "string",
+          "description": "Required when archive_quality != 'real'. Free text explaining why calibration cannot be validated against this archive."
+        },
+        "trip_max_loss_usd_override": {
+          "type": "number",
+          "description": "When archive_quality != 'real', override the default $25/24h trip with a tighter cap (typically $5)."
+        }
+      },
+      "additionalProperties": false
     }
   }
 }

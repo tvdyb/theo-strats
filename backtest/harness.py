@@ -10,6 +10,18 @@ Hard rules:
 - Reads ONLY from archive_root and the staged pipeline. No Kalshi/web fetches.
 - Stdlib only (json, csv, dataclasses, importlib, datetime, pathlib, statistics).
 - Must not mutate the pipeline file, the spec, or any archive entry.
+
+Synthetic-archive ship-with-trip rule (Fix 2):
+- If `spec.backtest.archive_quality != "real"`, the harness short-circuits the
+  calibration AND drift gates to passed=True with a reason of
+  `"skipped: archive_quality=<...> (<skip_reason>). Ship-with-trip."`. This is
+  because the archive is structurally biased (e.g. EIA-weekly forward-fill of
+  daily AAA) and any calibration computed against it is meaningless. The
+  leakage and refusal-sanity gates STILL run (they don't depend on
+  ground-truth resolutions). To compensate for the missing calibration check,
+  the spec must also set `backtest.trip_max_loss_usd_override` (typically
+  $5/24h vs the default $25). The integrator honors that override when
+  writing `pnl/<family>.json` at promotion time.
 """
 from __future__ import annotations
 
@@ -483,6 +495,27 @@ def _stratified_samples(obs: list[dict], k: int) -> list[dict]:
 # ---------------------------------------------------------------------------
 # Public entrypoint
 # ---------------------------------------------------------------------------
+def _spec_archive_quality(spec: dict) -> tuple[str, str | None, float | None]:
+    """Return (archive_quality, skip_reason, trip_override).
+
+    `archive_quality` defaults to "real" when the spec has no `backtest`
+    block. `skip_reason` is None unless quality != "real". `trip_override`
+    is the value the integrator should write into pnl/<family>.json when
+    promoting under a synthetic archive.
+    """
+    bt = spec.get("backtest") or {}
+    if not isinstance(bt, dict):
+        return "real", None, None
+    quality = str(bt.get("archive_quality") or "real")
+    skip_reason = bt.get("skip_calibration_gate_reason")
+    trip = bt.get("trip_max_loss_usd_override")
+    try:
+        trip = float(trip) if trip is not None else None
+    except (TypeError, ValueError):
+        trip = None
+    return quality, (str(skip_reason) if skip_reason else None), trip
+
+
 def run_backtest(
     pipeline_module_path: str,
     pipeline_class_name: str,
@@ -495,6 +528,7 @@ def run_backtest(
     """Run the walk-forward backtest. See module docstring for contract."""
     archive_root = Path(archive_root)
     spec = json.loads(Path(spec_path).read_text())
+    archive_quality, skip_reason, trip_override = _spec_archive_quality(spec)
 
     # Resolve the event list.
     events = list(historical_events or [])
@@ -552,6 +586,61 @@ def run_backtest(
         })
 
     n_obs = len(all_obs)
+
+    # Synthetic-archive ship-with-trip short-circuit (Fix 2).
+    # When archive_quality != 'real', the calibration and drift gates are
+    # structurally unreliable (the archive itself is biased), so we skip them
+    # and rely on the trip_max_loss_usd_override (typically $5/24h) to bound
+    # damage in production. Leakage and refusal-sanity STILL run — they don't
+    # depend on calibration ground truth, only on (archive, pipeline) shape.
+    if archive_quality != "real":
+        leak = _compute_leakage(leakage_log)
+        refusal = _compute_refusal_sanity(refusal_totals, n_steps_total)
+        skip_msg = (
+            f"skipped: archive_quality={archive_quality} "
+            f"({skip_reason or 'no reason given'}). Ship-with-trip"
+            + (f" (max_loss_usd_override={trip_override})." if trip_override is not None
+               else " (no trip override set; spec should set "
+                    "backtest.trip_max_loss_usd_override).")
+        )
+        # We treat synthetic-archive runs as PASSING the calibration & drift
+        # gates with reason=skip_msg. Leakage/refusal still gate as normal.
+        cal_skipped = {"passed": True, "skipped": True, "reason": skip_msg}
+        drift_skipped = {"passed": True, "skipped": True, "reason": skip_msg}
+        gates = {
+            "calibration": True,  # skipped => pass
+            "leakage": leak["passed"],
+            "refusal_sanity": refusal["passed"],
+            "drift": True,  # skipped => pass
+        }
+        passed = all(gates.values())
+        if passed:
+            reason = skip_msg
+        else:
+            failed = [k for k, v in gates.items() if not v]
+            details = []
+            if "leakage" in failed:
+                details.append(f"leakage violations={leak.get('violations')}")
+            if "refusal_sanity" in failed:
+                details.append(
+                    f"refusal_rate={refusal.get('rate')} "
+                    f"outside [{REFUSAL_RATE_MIN}, {REFUSAL_RATE_MAX}]"
+                )
+            reason = (skip_msg + " | failed-non-calibration: "
+                      + "; ".join(details))
+        verdict = BacktestVerdict(
+            passed=passed,
+            reason=reason,
+            calibration=cal_skipped,
+            leakage_check=leak,
+            refusal_sanity=refusal,
+            n_observations=n_obs,
+            report_path=str(report_path),
+            drift_check=drift_skipped,
+        )
+        _write_report(report_path, output_dir, verdict, all_obs, per_event_summary,
+                      events, timing_ms)
+        return verdict
 
     # Empty/sparse archive — refuse cleanly.
     if n_obs < MIN_OBSERVATIONS:

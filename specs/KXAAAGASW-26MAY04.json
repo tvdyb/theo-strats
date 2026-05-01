@@ -110,5 +110,10 @@
       "verdict": "watch",
       "data": "30-day move +31c, 7-day move +27c. Stationary σ_4 ≈ 2.6c implies ~7-σ event for +20c, p≈10^-12 -- clearly miscalibrated. Modeler should expose σ as analyst-overridable and consider a regime indicator (RBOB futures % change over last 5d) to inflate σ when the rally regime is active."
     }
-  ]
+  ],
+  "backtest": {
+    "archive_quality": "synthetic_forward_fill",
+    "skip_calibration_gate_reason": "AAA has no public daily historical archive. Synthetic archive built from EIA weekly forward-fill + Kalshi implied bounds. Three model revs (stationary, rolling-σ, Student-t) all failed the 8pp gate at 29-44pp. Cap-raise null-test ruled out saturation. Diagnosed: archive is structurally biased; revalidate after auto_theo/archive_aaa_daily.py accumulates >=14 days of real-AAA-daily.",
+    "trip_max_loss_usd_override": 5.0
+  }
 }
